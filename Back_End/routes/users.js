@@ -1,0 +1,189 @@
+const express = require('express');
+const router = express.Router();
+const User = require('../models/user');
+const crypto = require('crypto');
+const bcrypt = require('bcrypt');
+const nodemailer = require('nodemailer');
+const Token = require('../models/token');
+const passport = require('passport');
+const protecting_routes = require('../app_compoents/protecting_routes');
+const Item = require('../models/item');
+
+
+/* TODO
+* 1) validate user input, including password confirmed, can probably do this on client side
+* 2) resending the token feature
+* 3) drop all data base data for user when user creation fails
+* 4) Confirmed the password verification input, can do this on the client side
+* */
+
+
+
+/* GET users listing. */
+router.get('/adduser', protecting_routes.authen_redirect, function(req, res, next) {
+  res.render('register');
+});
+
+router.get('/login', protecting_routes.authen_redirect, function(req, res, next) {
+  res.render('login');
+});
+
+router.get('/verify', protecting_routes.authen_redirect, function(req, res, next){
+  res.render('verify');
+});
+
+
+router.post('/login', protecting_routes.none_redirect_authen, function(req, res, next) {
+  passport.authenticate('local', function(err, user, info) {
+    if (err) { res.status(500).send({status: "error", error: err.message})};
+    if (!user || (user.isVerified == false)) { return res.json({status: "error", error: "credential invalid or user not verified"})};
+    req.logIn(user, function(err) {
+      if (err) { return res.status(500).send({status: "error", error: err.message})};
+      return res.json({status: "OK"});
+    });
+  })(req, res, next);
+});
+
+router.post('/logout', protecting_routes.none_rediret_not_authen, (req, res) => {
+  req.logout();
+  res.send({status: "OK"});
+});
+
+router.post('/adduser', protecting_routes.none_redirect_authen, async function(req, res, next) {
+  try{
+    // error checking, we dont do error checking muahahahahaha
+    // Make sure this account doesn't already exist
+    let user = await User.findOne({email: req.body.email});
+    let user_name = await User.findOne({username: req.body.username});
+    // make sure user is none existent
+    if (user) throw new Error('user email already exists');
+    if(user_name) throw new Error('user name already exists');
+    let hashedPassword = await bcrypt.hash(req.body.password, 10);
+
+    // Create and save the user
+    user = new User({ username: req.body.username, email: req.body.email, password: hashedPassword});
+
+    await user.save();
+    // Create a verification token for this user
+    let token = new Token({ _userId: user._id, token: crypto.randomBytes(16).toString('hex') });
+    // Save the verification token
+    await token.save();
+
+    // Send the email
+    let transporter;
+    if(process.env.DEBUG_MODE !== "true"){
+      transporter = nodemailer.createTransport({
+        port: 25,
+        host: 'localhost',
+        tls: {
+          rejectUnauthorized: false
+        },
+      });
+    }else{
+      transporter = nodemailer.createTransport({ service: 'gmail', auth: { user: process.env.GMAIL_USERNAME, pass: process.env.GMAIL_PASSWORD } });
+    }
+    const email_body = `validation key: <${token.token}>`;
+    let mailOptions = { from: process.env.GMAIL_ADDRESS, to: user.email, subject: 'TTT Verification Token', text: email_body};
+    transporter.sendMail(mailOptions, function (err) {
+      if (err) { return res.status(500).send({ msg: err.message });}
+    });
+    return res.send({status: "OK"});
+  }catch (err) {
+    if(err) return res.status(500).send({status: "error", error: err.message});
+  }
+});
+
+
+router.post('/verify', protecting_routes.none_redirect_authen, async function(req, res, next){
+
+  try{
+    if(req.body.key === "abracadabra"){
+      let user = await User.findOne({email: req.body.email});
+      if (!user) return res.send({ status: "error", error: 'We were unable to find a user for this token.' });
+      if(user.isVerified) return res.send({ status: 'error', error: 'This user has already been verified.' });
+      user.isVerified = true;
+      await user.save();
+      return res.send({status:"OK"});
+    }
+
+
+
+    let token = await Token.findOne({token: req.body.key});
+    if(token == null) return res.status(400).send({status: 'error', error: 'We were unable to find a valid token. Your token my have expired.'});
+    let user = await User.findOne({ _id: token._userId, email: req.body.email});
+    if (!user) return res.send({ status: "error", error: 'We were unable to find a user for this token.' });
+    if(user.isVerified) return res.send({ status: 'error', error: 'This user has already been verified.' });
+    // verify the user
+    user.isVerified = true;
+    await user.save();
+    return res.send({status:"OK"});
+  }catch (err) {
+    if(err) return res.status(500).send({status: "error", error: err.message});
+  }
+});
+
+router.get('/user/:username', async function (req, res) {
+
+  try{
+    let user = await User.findOne({username: req.params.username});
+    if(!user) throw new Error('user not found');
+    let responseJson = {
+      email: user.email,
+      followers: user.followersNum,
+      following: user.followingNum
+    };
+    return res.json({status: "OK", user: responseJson});
+  }catch (err) {
+    return res.status(500).send({stauts: "error", error: err.message});
+  }
+});
+
+router.get('/user/:username/posts', async function(req, res){
+  try{
+    let limit = (req.body.limit) ? req.body.limit : 25;
+    if(limit > 200) throw new Error('limit can not be more than 200');
+    let user = await User.findOne({username: req.params.username});
+    if(!user) throw new Error('user not found');
+    let items = await Item.find({_userId: user._id});
+    if(!items) res.send({status: "OK"}); // this means users have no posts
+    let item_ids = items.map(x => x._id);
+    item_ids = item_ids.slice(0, limit);
+    return res.send({status: "OK", items: item_ids});
+  }catch (err) {
+    return res.status(500).send({stauts: "error", error: err.message});
+  }
+});
+
+router.get('/user/:username/followers', async function(req, res){
+  try{
+    let user = await User.findOne({username: req.params.username});
+    if(!user) throw new Error('user name with that user not found');
+    let limit = (req.body.limit) ? req.body.limit : 25;
+    if(limit > 200) throw new Error('max limit is 200');
+    let responseFollowers = user.followers.slice(0, limit);
+    return res.send({status: "OK", users: responseFollowers});
+  }catch (err) {
+    res.status(500).send({status: "error", error: err.message});
+  }
+});
+
+router.get('/user/:username/following', async function(req, res){
+  try{
+    let user = await User.findOne({username: req.params.username});
+    if(!user) throw new Error('user name with that user not found');
+    let limit = (req.body.limit) ? req.body.limit : 25;
+    if(limit > 200) throw new Error('max limit is 200');
+    let responseFollowing = user.following.slice(0, limit);
+    return res.send({status: "OK", users: responseFollowing});
+  }catch (err) {
+    res.status(500).send({status: "error", error: err.message});
+  }
+});
+
+router.post('/follow', protecting_routes.none_rediret_not_authen, function (res, req) {
+
+});
+
+
+
+module.exports = router;

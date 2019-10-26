@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Main Page</title>
+    <script type="text/javascript" src="/javascripts/twitter_search_item.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel='stylesheet' href='/stylesheets/twitter_search_item.css' />
+</head>
+<body>
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/main">Twitter Clone</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li id="home"><a href="/main">Home</a></li>
+            <li id="search_item" class="active"><a href="/search_item">Search Item</a></li>
+            <li id="add_item"><a  href="/add_item">Add Item</a></li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+            <li><a id="sign_up" href="/adduser"><span class="glyphicon glyphicon-user"></span>  <%= sign_up_text %></a></li>
+            <li><a id="login" href="/login"><span class="glyphicon glyphicon-log-in"></span> <%= login_text %></a></li>
+        </ul>
+    </div>
+</nav>
+
+
+<div id="search_bar" class="container">
+    <div class="row searchFilter" >
+        <div class="col-sm-12" >
+            <div class="input-group" >
+                <input id="table_filter" type="text" class="form-control" aria-label="Text input with segmented button dropdown" placeholder="Input Username" >
+                <div class="input-group-btn" >
+                    <button id="advance_search_button" type="button" class="btn btn-secondary">Advanced Search</button>
+                    <button id="searchBtn" type="button" class="btn btn-secondary btn-search" ><span class="glyphicon glyphicon-search" >&nbsp;</span> <span class="label-icon" >Search</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div id="time_line" class="col-xl">
+    <div id="dummy" class="tweet-container">
+        <blockquote class="twitter-tweet">
+            <div id="tweet_title" class="quoteHeader"><p>2019-10-23 Developer said:</p></div>
+            <p id="tweet_content">This is a dummy tweet</p>
+            <div id="tweet_properties" class="quoteFooter">Like</div>
+        </blockquote>
+    </div>
+</div>
+
+
+<!-- Modal -->
+<div class="modal fade" id="advanced_search_model" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="advanced_search_model_label">Advance Search</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <input class="form-control" id="modal_input_username" placeholder="Input Username">
+                <input class="form-control" id="modal_input_time" placeholder="Search before this time e.g. 10/23/2019 23:31:30">
+                <p>Input the number of posts to show, default 25, max 100: <input id="modal_input_number" type="number" value="25" name="quantity" min="1" max="100"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button id="model_search_button" type="button" class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+</body>
+</html>

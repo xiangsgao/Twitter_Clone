@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Verify</title>
+    <link rel='stylesheet' href='/stylesheets/verify.css' />
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="/javascripts/verify.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+</head>
+<body>
+<div class="wrapper fadeInDown">
+    <div id="formContent">
+        <!-- Tabs Titles -->
+
+        <div id="formHeader"><p>Token Verification</p></div>
+
+        <!-- Login Form -->
+        <form id="verify_form" action="/verify" method="post">
+            <input type="text" id="token" class="fadeIn first" name="key" placeholder="Enter your token here">
+            <input type="text" id="email" class="fadeIn second" name="email" placeholder="Enter your email here">
+            <p class = "fadeIn third">Token key has been sent to your email. Enter it to verify</p>
+            <input type="submit" class="fadeIn fourth" value="Submit">
+        </form>
+
+        <!-- Remind Passowrd -->
+        <!--        <div id="formFooter">-->
+        <!--            <a class="underlineHover" href="#">Forgot Password?</a>-->
+        <!--        </div>-->
+
+    </div>
+</div>
+</body>
+</html>
