@@ -132,6 +132,7 @@ router.post('/search', async function (req, res) {
         let timestamp = (req.body.timestamp) ? req.body.timestamp * 1000 : Date.now();
         let limit = (req.body.limit) ? req.body.limit : 25;
         if(limit > 100) throw new Error('limit can not be more than 100');
+
         // first filters by time stamp
         let items = await Item.find({
             createdAt: {$lte: new Date(timestamp).toISOString()} // find the items in which the timestamp is less or equal

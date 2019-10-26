@@ -23,6 +23,10 @@ function main() {
 
 function simple_search(event){
     let search_json = {username: $('#table_filter')[0].value};
+    if($('#table_filter')[0].value === ''){
+        $('#time_line').empty();
+        return;
+    }
     populate_time_line(search_json);
 }
 
@@ -66,16 +70,6 @@ async function postData(url = '', data = {}) {
 
 async function populate_time_line(search_json){
     try{
-        if(search_json.username === '' && (Object.keys(search_json).length === 1)){
-            $('#time_line').empty();
-            return;
-        }
-        if(search_json.username === '') {
-            delete search_json.username;
-        }
-        if(search_json.timestamp === ''){
-            delete search_json.timestamp;
-        }
         let response = await postData('/search', search_json);
         let items = response.items;
         $('#time_line').empty();
@@ -88,11 +82,14 @@ async function populate_time_line(search_json){
 }
 
 function advance_search(event){
-    let searchJson = {username: $('#modal_input_username')[0].value, limit: $('#modal_input_number')[0].value};
+    let username = $('#modal_input_username')[0].value;
+    let limit = $('#modal_input_number')[0].value;
     let strDate = $('#modal_input_time')[0].value;
-    if(strDate !== ''){
-        searchJson.timestamp = toTimestamp(strDate);
-    }
+    let searchJson = {username: (username === '') ? undefined : username,
+                        limit: limit,
+                        timestamp: (strDate === '') ? undefined : toTimestamp(strDate)
+                    };
+
     $('#advanced_search_model').modal('toggle');
     populate_time_line(searchJson);
 }
