@@ -32,11 +32,20 @@ blockquote.add-item-tweet {
     width: 100%;
 }
 
-blockquote.twitter-tweet p {
+p.tweet_content_class {
     font-size: 16px;
     font-weight: normal;
     line-height: 20px;
 }
+
+blockquote div.quoteHeader p{
+    margin-top: 15px;
+    font-weight: bold;
+    text-align: left;
+    margin-bottom: 2%;
+    font-size: 16px;
+}
+
 
 blockquote.twitter-tweet a {
     color: inherit;
@@ -96,3 +105,25 @@ blockquote div.quoteHeader p{
     font-weight: bold;
 }
 
+.btn_tweetFooter {
+    background-color: DodgerBlue; /* Blue background */
+    border: none; /* Remove borders */
+    color: white; /* White text */
+    padding: 12px 16px; /* Some padding */
+    font-size: 16px; /* Set a font size */
+    cursor: pointer; /* Mouse pointer on hover */
+}
+
+/* Darker background on mouse-over */
+.btn_tweetFooter:hover {
+    background-color: RoyalBlue;
+}
+
+.tweet_properties{
+    margin-right: 2px;
+}
+
+blockquote.twitter-tweet div.tweet_properties p.tweet_properties {
+    font-size: 5px;
+    font-weight: lighter;
+}

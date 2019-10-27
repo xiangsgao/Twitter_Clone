@@ -108,7 +108,7 @@ router.delete('/item/:id', none_rediret_not_authen, async function(req, res){
 
     try{
         let item = await Item.findOne({_id: req.params.id, _userId: req.user._id});
-        if(!item) throw new Error('item not found');
+        if(!item) throw new Error('item not found or you do not own this item');
 
         // delete all the items with this as parents first, skipping this for the moment
         // let child_items = Item.find({_parentId: item._id});
@@ -124,7 +124,6 @@ router.delete('/item/:id', none_rediret_not_authen, async function(req, res){
 
 // TODO finishes the rest of the filter
 router.post('/search', async function (req, res) {
-
     try{
         let timestamp = (req.body.timestamp) ? req.body.timestamp * 1000 : Date.now();
         let limit = (req.body.limit) ? req.body.limit : 25;
@@ -161,8 +160,12 @@ router.post('/search', async function (req, res) {
           });
         };
 
-        // filtered by items made by the user the loged in user is following
-        if(req.body.following && (req.body.following === 'true')){
+        // filtered by items made by the user the logged in user is following
+        if(req.body.following){
+            if(!req.isAuthenticated()) {
+                throw new Error('user needs to be logged in to use following in advance search');
+            }
+
             responseItems = responseItems.filter((element, index)=>{
                 let item_username = element.username;
                 return (req.user.following.includes(item_username));

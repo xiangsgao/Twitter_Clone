@@ -52,12 +52,15 @@ function append_to_time_line(element){
     label.attr('id', `title-${element.id}`)
     let content = new_tweet.find('#tweet_content');
     content.attr('id', `content-${element.id}`)
-    let properties = new_tweet.find('#tweet_properties');
-    properties.attr('id', `properties-${element.id}`)
+    let properties_paragraph = new_tweet.find('#properties_paragraph');
+    properties_paragraph.attr('id', `properties_paragraph-${element.id}`);
+    let properties_delete_button = new_tweet.find('#properties_delete_button');
+    properties_delete_button.attr('id', `properties_delete_button-${element.id}`);
     let date = new Date(element.timestamp);
     label[0].innerHTML = `<p>${date.getMonth() + 1}-${date.getDate()}-${date.getFullYear()} ${element.username} said:</p>`;
     content[0].innerHTML = element.content;
-    properties[0].innerHTML = `likes: ${element.property.likes} retweeted:${element.retweeted} id:${element.id}`;
+    properties_paragraph[0].innerHTML = `likes: ${element.property.likes} retweeted:${element.retweeted} id:${element.id}`;
+    properties_delete_button[0].addEventListener('click', delete_item);
     $('#time_line').append(new_tweet);
 }
 
@@ -78,11 +81,42 @@ async function login_link_on_click(event){
 
 }
 
+async function delete_item(event){
+    try{
+        let delete_button = event.currentTarget; // don't use event.target
+        let delete_button_id = delete_button.id;
+        let item_id = delete_button_id.substring(25);
+        let response = await deleteData(`/item/${item_id}`);
+        if(response.status === "error") throw new Error(`Server sent ${response.error}`);
+        $(`#${item_id}`).remove();
+    }catch (err) {
+        alert(`cant delete, got this error: ${err.message}`);
+    }
+}
+
 
 async function postData(url = '', data = {}) {
     // Default options are marked with *
     const response = await fetch(url, {
         method: 'POST', // *GET, POST, PUT, DELETE, etc.
+        mode: 'cors', // no-cors, *cors, same-origin
+        cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+        credentials: 'same-origin', // include, *same-origin, omit
+        headers: {
+            'Content-Type': 'application/json'
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        redirect: 'follow', // manual, *follow, error
+        referrer: 'no-referrer', // no-referrer, *client
+        body: JSON.stringify(data) // body data type must match "Content-Type" header
+    });
+    return await response.json(); // parses JSON response into native JavaScript objects
+}
+
+async function deleteData(url = '', data = {}) {
+    // Default options are marked with *
+    const response = await fetch(url, {
+        method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
         mode: 'cors', // no-cors, *cors, same-origin
         cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
         credentials: 'same-origin', // include, *same-origin, omit

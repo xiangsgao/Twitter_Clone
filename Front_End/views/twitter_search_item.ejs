@@ -7,10 +7,11 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <link rel='stylesheet' href='/stylesheets/twitter_search_item.css' />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
 
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-inverse navbar-static-top">
     <div class="container-fluid">
         <div class="navbar-header">
             <a class="navbar-brand" href="/main">Twitter Clone</a>
@@ -19,6 +20,7 @@
             <li id="home"><a href="/main">Home</a></li>
             <li id="search_item" class="active"><a href="/search_item">Search Item</a></li>
             <li id="add_item"><a  href="/add_item">Add Item</a></li>
+            <li id="all_users"><a  href="/all_users">All Users</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li><a id="sign_up" href="/adduser"><span class="glyphicon glyphicon-user"></span>  <%= sign_up_text %></a></li>
@@ -32,7 +34,7 @@
     <div class="row searchFilter" >
         <div class="col-sm-12" >
             <div class="input-group" >
-                <input id="table_filter" type="text" class="form-control" aria-label="Text input with segmented button dropdown" placeholder="Input Username" >
+                <input id="table_filter" type="text" class="form-control" aria-label="Text input with segmented button dropdown" placeholder="Input Username" value="<%= search_text%>">
                 <div class="input-group-btn" >
                     <button id="advance_search_button" type="button" class="btn btn-secondary">Advanced Search</button>
                     <button id="searchBtn" type="button" class="btn btn-secondary btn-search" ><span class="glyphicon glyphicon-search" >&nbsp;</span> <span class="label-icon" >Search</span></button>
@@ -46,9 +48,12 @@
 <div id="time_line" class="col-xl">
     <div id="dummy" class="tweet-container">
         <blockquote class="twitter-tweet">
-            <div id="tweet_title" class="quoteHeader"><p>2019-10-23 Developer said:</p></div>
-            <p id="tweet_content">This is a dummy tweet</p>
-            <div id="tweet_properties" class="quoteFooter">Like</div>
+            <div id="tweet_title" class="quoteHeader"><p class="quoteHeader_paragraph">2019-10-23 Developer said:</p></div>
+            <p id="tweet_content" class="tweet_content_class">This is a dummy tweet</p>
+            <div id="tweet_properties" class="quoteFooter">
+                <button id="properties_delete_button" class="btn_tweetFooter"><i class="fa fa-trash"></i></button>
+                <p id="properties_paragraph" class="properties_paragraph_class"></p>
+            </div>
         </blockquote>
     </div>
 </div>
@@ -65,9 +70,18 @@
                 </button>
             </div>
             <div class="modal-body">
+                <h5>If fields are all empty, the default would be to return all items.</h5>
                 <input class="form-control" id="modal_input_username" placeholder="Input Username">
                 <input class="form-control" id="modal_input_time" placeholder="Search before this time e.g. 10/23/2019 23:31:30">
+                <input class="form-control" id="modal_input_q" placeholder="Search items whose content contain the following keywords">
                 <p>Input the number of posts to show, default 25, max 100: <input id="modal_input_number" type="number" value="25" name="quantity" min="1" max="100"></p>
+                <ul class="tg-list">
+                    <li><p>Only items from user you follow:</p></li>
+                    <li class="tg-list-item">
+                        <input id="modal_input_following" class="tgl tgl-light" type="checkbox"/>
+                        <label class="tgl-btn" for="modal_input_following"></label>
+                    </li>
+                </ul>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

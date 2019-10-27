@@ -4,7 +4,14 @@
     <list default="true" id="a5dccc20-7e85-464a-8298-90507a806dde" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Back_End/routes/item.js" beforeDir="false" afterPath="$PROJECT_DIR$/Back_End/routes/item.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back_End/routes/users.js" beforeDir="false" afterPath="$PROJECT_DIR$/Back_End/routes/users.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back_End/routes/twitter.js" beforeDir="false" afterPath="$PROJECT_DIR$/Back_End/routes/twitter.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front_End/public/javascripts/twitter_add_item.js" beforeDir="false" afterPath="$PROJECT_DIR$/Front_End/public/javascripts/twitter_add_item.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front_End/public/javascripts/twitter_search_item.js" beforeDir="false" afterPath="$PROJECT_DIR$/Front_End/public/javascripts/twitter_search_item.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front_End/public/stylesheets/twitter_add_item.css" beforeDir="false" afterPath="$PROJECT_DIR$/Front_End/public/stylesheets/twitter_add_item.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front_End/public/stylesheets/twitter_search_item.css" beforeDir="false" afterPath="$PROJECT_DIR$/Front_End/public/stylesheets/twitter_search_item.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front_End/views/twitter_add_item.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Front_End/views/twitter_add_item.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front_End/views/twitter_index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Front_End/views/twitter_index.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front_End/views/twitter_search_item.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Front_End/views/twitter_search_item.ejs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,16 +19,30 @@
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="CSS File" />
+        <option value="JavaScript File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="1SlKMCofBdT97MPDw0uTyRvmHMa" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/Back_End/bin/www" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs.protractor.protractor_package" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
+    <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -53,7 +74,8 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1572132691647</updated>
-      <workItem from="1572132694700" duration="5277000" />
+      <workItem from="1572132694700" duration="5449000" />
+      <workItem from="1572199218751" duration="11316000" />
     </task>
     <servers />
   </component>
@@ -65,7 +87,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>

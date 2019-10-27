@@ -10,15 +10,29 @@ router.get('/main', function(req, res, next) {
     res.render('twitter_index', {sign_up_text:`Sign Up`, login_text: 'Login'});
 });
 
-router.get('/search_item', function(req, res, next) {
+router.get('/search_item/', function(req, res, next) {
     if(req.isAuthenticated()){
-        return res.render('twitter_search_item', {sign_up_text:`Welcome ${req.user.username}`, login_text: 'Logout'});
+        return res.render('twitter_search_item', {sign_up_text:`Welcome ${req.user.username}`, login_text: 'Logout', search_text: ''});
     }
-    res.render('twitter_search_item', {sign_up_text:`Sign Up`, login_text: 'Login'});
+    res.render('twitter_search_item', {sign_up_text:`Sign Up`, login_text: 'Login', search_text: ''});
+});
+
+router.get('/search_item/:username', function(req, res, next) {
+    if(req.isAuthenticated()){
+        return res.render('twitter_search_item', {sign_up_text:`Welcome ${req.user.username}`, login_text: 'Logout', search_text: req.params.username});
+    }
+    res.render('twitter_search_item', {sign_up_text:`Sign Up`, login_text: 'Login', search_text: req.params.username });
 });
 
 router.get('/add_item', not_authen_redirect, function(req, res, next) {
     res.render('twitter_add_item', {sign_up_text:`Welcome ${req.user.username}`, login_text: 'Logout'});
+});
+
+router.get('/all_users', function(req, res, next) {
+    if(req.isAuthenticated()){
+        return res.render('twitter_all_users', {sign_up_text:`Welcome ${req.user.username}`, login_text: 'Logout'});
+    }
+    res.render('twitter_all_users', {sign_up_text:`Sign Up`, login_text: 'Login'});
 });
 
 module.exports = router;

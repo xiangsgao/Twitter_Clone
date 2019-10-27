@@ -2,11 +2,11 @@
 <html>
 <head>
     <title>Main Page</title>
-    <script type="text/javascript" src="/javascripts/twitter_index.js"></script>
+    <script type="text/javascript" src="/javascripts/twitter_all_users.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-    <link rel='stylesheet' href='/stylesheets/twitter_index.css' />
+    <link rel='stylesheet' href='/stylesheets/twitter_all_users.css' />
 </head>
 <body>
 
@@ -16,10 +16,10 @@
             <a class="navbar-brand" href="/main">Twitter Clone</a>
         </div>
         <ul class="nav navbar-nav">
-            <li id="home" class="active"><a href="/main">Home</a></li>
+            <li id="home"><a href="/main">Home</a></li>
             <li id="search_item" ><a href="/search_item">Search Item</a></li>
             <li id="add_item"><a  href="/add_item">Add Item</a></li>
-            <li id="all_users"><a  href="/all_users">All Users</a></li>
+            <li id="all_users" class="active"><a  href="/all_users">All Users</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li><a id="sign_up" href="/adduser"><span class="glyphicon glyphicon-user"></span>  <%= sign_up_text %></a></li>
@@ -28,7 +28,6 @@
     </div>
 </nav>
 
-<p id="body_writing">Nothing here yet.<br> I don't know what should go here. Post me a tweet if you have any idea.</p>
 
 
 
