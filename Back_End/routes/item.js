@@ -19,7 +19,6 @@ conn.once('open', ()=>{
 
 router.post('/additem', none_rediret_not_authen, async function (req, res) {
 
-    if(process.env.PRINT_REQUESTS === "true") console.log(req.body);
     try{
         let item = new Item({_userId: ObjectId(req.user._id), content: req.body.content, childType: req.body.childType, _parentId: (req.body.parent) ? ObjectId(req.body.parent) : undefined});
         // media ids may need to be readjusted
@@ -45,7 +44,6 @@ router.post('/additem', none_rediret_not_authen, async function (req, res) {
 
         return res.send({status: "OK", id: item._id});
     }catch (err) {
-        if(process.env.PRINT_ERRORS === "true") console.log(err.message);
         res.status(500).send({status: "error", error: err.message});
     }
 });
@@ -127,7 +125,6 @@ router.delete('/item/:id', none_rediret_not_authen, async function(req, res){
 // TODO finishes the rest of the filter
 router.post('/search', async function (req, res) {
 
-    if(process.env.PRINT_REQUESTS === "true") console.log(req.body);
     try{
         let timestamp = (req.body.timestamp) ? req.body.timestamp * 1000 : Date.now();
         let limit = (req.body.limit) ? req.body.limit : 25;
@@ -169,7 +166,6 @@ router.post('/search', async function (req, res) {
         responseItems = responseItems.slice(0, limit);
         return res.send({status: "OK", items: responseItems});
     }catch (err) {
-        if(process.env.PRINT_ERRORS === "true") console.log(err.message);
         res.status(500).send({status: "error", error: err.message});
     }
 });
