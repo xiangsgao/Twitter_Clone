@@ -161,6 +161,22 @@ router.post('/search', async function (req, res) {
           });
         };
 
+        // filtered by items made by the user the loged in user is following
+        if(req.body.following && (req.body.following === 'true')){
+            responseItems = responseItems.filter((element, index)=>{
+                let item_username = element.username;
+                return (req.user.following.includes(item_username));
+            });
+        }
+
+        // if query string is pass
+        if(req.body.q && (req.body.q !== '')){
+            responseItems = responseItems.filter((element, index)=>{
+                let content = element.content;
+                return (content.includes(req.body.q));
+            });
+        }
+
 
         // return the limit number of items
         responseItems = responseItems.slice(0, limit);

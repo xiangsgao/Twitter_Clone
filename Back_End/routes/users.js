@@ -180,8 +180,23 @@ router.get('/user/:username/following', async function(req, res){
   }
 });
 
-router.post('/follow', protecting_routes.none_rediret_not_authen, function (res, req) {
-
+router.post('/follow', protecting_routes.none_rediret_not_authen, async function (req, res) {
+  console.log(req.body);
+  try{
+      let followed_user = await User.findOne({username: req.body.username});
+      if(!followed_user) throw new Error('User to be followed is not found');
+      followed_user.followers.push(req.user.username);
+      followed_user.followersNum += 1;
+      req.user.following.push(followed_user.username);
+      req.user.followingNum += 1;
+      followed_user.markModified('followers');
+      req.user.markModified('following');
+      await followed_user.save();
+      await req.user.save();
+      return res.send({status: "OK"});
+    } catch (err) {
+      return res.status(500).send({status: "error", error: err.message});
+    }
 });
 
 
