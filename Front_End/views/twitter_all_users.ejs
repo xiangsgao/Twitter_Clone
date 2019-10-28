@@ -2,10 +2,9 @@
 <html>
 <head>
     <title>Main Page</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-1.10.0.min.js"></script>
     <script type="text/javascript" src="/javascripts/twitter_all_users.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <link rel='stylesheet' href='/stylesheets/twitter_all_users.css' />
 </head>
 <body>
@@ -28,7 +27,34 @@
     </div>
 </nav>
 
+<div class="container-fluid card_container">
+    <div class="row">
 
+<!--        this is one user card. One row can hold 12/2=6 on large view ports-->
+        <div id="dummy_col" class="col-sm-12 col-lg-3 card_col">
+            <div class="card mb-3" style="max-width: 540px;">
+                <div class="row no-gutters">
+                    <div class="col-md-4">
+                        <img src="/imgs/user.png" class="card-img">
+                    </div>
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 id="dummy_username" class="card-title card_title">Username</h5>
+                            <p id="dummy_email">Email: test@test.com</p>
+                            <p id="dummy_followers_count" class="card-text">Followers: 0</p>
+                            <p><small id="dummy_followers" class="text-muted">user4, user5, user6</small></p>
+                            <p id="dummy_following_count" class="card-text">Following: 10</p>
+                            <p><small id="dummy_following" class="text-muted">user1, user2,user3</small></p>
+                            <span><button>button</button><a href="/search_item">See this user's tweets</a></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+<!--            end of the view port-->
+
+    </div>
+</div>
 
 
 

@@ -3,15 +3,10 @@
   <component name="ChangeListManager">
     <list default="true" id="a5dccc20-7e85-464a-8298-90507a806dde" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back_End/routes/item.js" beforeDir="false" afterPath="$PROJECT_DIR$/Back_End/routes/item.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back_End/routes/twitter.js" beforeDir="false" afterPath="$PROJECT_DIR$/Back_End/routes/twitter.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front_End/public/javascripts/twitter_add_item.js" beforeDir="false" afterPath="$PROJECT_DIR$/Front_End/public/javascripts/twitter_add_item.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front_End/public/javascripts/twitter_search_item.js" beforeDir="false" afterPath="$PROJECT_DIR$/Front_End/public/javascripts/twitter_search_item.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front_End/public/stylesheets/twitter_add_item.css" beforeDir="false" afterPath="$PROJECT_DIR$/Front_End/public/stylesheets/twitter_add_item.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front_End/public/stylesheets/twitter_search_item.css" beforeDir="false" afterPath="$PROJECT_DIR$/Front_End/public/stylesheets/twitter_search_item.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front_End/views/twitter_add_item.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Front_End/views/twitter_add_item.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front_End/public/javascripts/twitter_all_users.js" beforeDir="false" afterPath="$PROJECT_DIR$/Front_End/public/javascripts/twitter_all_users.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front_End/public/stylesheets/twitter_all_users.css" beforeDir="false" afterPath="$PROJECT_DIR$/Front_End/public/stylesheets/twitter_all_users.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front_End/views/twitter_all_users.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Front_End/views/twitter_all_users.ejs" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Front_End/views/twitter_index.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Front_End/views/twitter_index.ejs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front_End/views/twitter_search_item.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Front_End/views/twitter_search_item.ejs" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -44,6 +39,12 @@
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/Front_End/public/imgs" />
+      <recent name="$PROJECT_DIR$/Front_End/public" />
+    </key>
+  </component>
   <component name="RunDashboard">
     <option name="ruleStates">
       <list>
@@ -75,7 +76,9 @@
       <option name="presentableId" value="Default" />
       <updated>1572132691647</updated>
       <workItem from="1572132694700" duration="5449000" />
-      <workItem from="1572199218751" duration="11316000" />
+      <workItem from="1572199218751" duration="11582000" />
+      <workItem from="1572242669838" duration="116000" />
+      <workItem from="1572292140693" duration="5249000" />
     </task>
     <servers />
   </component>
