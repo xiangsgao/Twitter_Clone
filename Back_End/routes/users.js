@@ -32,6 +32,27 @@ router.get('/verify', protecting_routes.authen_redirect, function(req, res, next
   res.render('verify');
 });
 
+router.get('/all_users_json', async function (req, res) {
+    try{
+      let users = await User.find({});
+      let users_json = [];
+      users.forEach((element, index)=>{
+        users_json.push({
+          username: element.username,
+          followers_count: element.followersNum,
+          following_count: element.followingNum,
+          email: element.email,
+          followers: element.followers,
+          following: element.following
+        });
+      });
+      res.send({status:"OK", users: users_json});
+    }catch (err) {
+      return res.status(500).send({status:'error', error: err.message});
+    }
+});
+
+
 
 router.post('/login', protecting_routes.none_redirect_authen, function(req, res, next) {
   passport.authenticate('local', function(err, user, info) {

@@ -18,3 +18,18 @@ img {
 .card_title{
     font-weight: bold;
 }
+
+.card_button_span > *{
+    padding-left: 15px;
+}
+
+.card-body > *{
+    word-wrap:break-word;
+}
+
+
+p.small_container{
+
+}
+
+
