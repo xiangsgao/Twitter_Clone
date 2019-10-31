@@ -44,19 +44,22 @@ function append_new_user(user){
     followers_count.html(`Followers: ${user.followers_count}`);
     followers_count.attr("id", `followers_count-${user.username}`);
     let followers = new_card_col.find('#dummy_followers');
-    followers.html(user.followers);
+    followers.html(user.followers.join(', '));
     followers.attr("id", `followers-${user.username}`);
 
     let following_count = new_card_col.find('#dummy_following_count');
     following_count.html(`Following: ${user.following_count}`);
     following_count.attr("id", `following_count-${user.username}`)
     let following = new_card_col.find('#dummy_following');
-    following.html(user.following);
+    following.html(user.following.join(', '));
     following.attr("id", `following-${user.username}`);
+
+    let link = new_card_col.find('a');
+    link.attr("href", `/search_item/${user.username}`);
 
     let follow_btn = new_card_col.find('#dummy_follow_button');
     follow_btn.attr('id', `follow_btn-${user.username}`);
-    if(userName === ''){
+    if(userName === '' || user.username === userName){
         follow_btn.hide();
         current_row[0].appendChild(new_card_col[0]);
         return;
@@ -69,25 +72,71 @@ function append_new_user(user){
     }else{
         follow_btn.html("follow");
     }
+    follow_btn.click(follow_button_handler);
     current_row[0].appendChild(new_card_col[0]);
-
 }
 
-async function login_link_on_click(event){
-    try{
+async function login_link_on_click(event) {
+    try {
         event.preventDefault();
         let response = await postData('/logout');
-        if(response.status === 'error'){
+        if (response.status === 'error') {
             $(location).attr('href', '/login');
-        }
-        else{
+        } else {
             $(location).attr('href', '/main');
         }
-    }
-    catch (err) {
+    } catch (err) {
         alert(`Encounter Error: ${err.message}`);
     }
+}
 
+function update_user_follow_profile(target_user, follow){
+    if(follow){
+        let following_count = $(`#following_count-${userName}`);
+        let temp = parseInt(following_count[0].innerHTML.substring(10)) + 1;
+        following_count[0].innerHTML = `Following: ${temp}`;
+        let following = $(`#following-${userName}`);
+        following[0].innerHTML += ` ,${target_user}`;
+        let followers_count = $(`#followers_count-${target_user}`);
+        temp = parseInt(followers_count[0].innerHTML.substring(10)) + 1;
+        followers_count[0].innerHTML = `followers: ${temp}`;
+        let followers = $(`#followers-${target_user}`);
+        followers[0].innerHTML += ` ,${userName}`
+    }else{
+        let following_count = $(`#following_count-${userName}`);
+        let temp = parseInt(following_count[0].innerHTML.substring(10)) - 1;
+        following_count[0].innerHTML = `Following: ${temp}`;
+        let following = $(`#following-${userName}`);
+        following[0].innerHTML = following[0].innerHTML.replace(` ,${target_user}`, '');
+        let followers_count = $(`#followers_count-${target_user}`);
+        temp = parseInt(followers_count[0].innerHTML.substring(10)) - 1;
+        followers_count[0].innerHTML = `followers: ${temp}`;
+        let followers = $(`#followers-${target_user}`);
+        followers[0].innerHTML = followers[0].innerHTML.replace(` ,${userName}`, '');
+    }
+}
+
+async function follow_button_handler(event){
+    try{
+        let button = event.currentTarget;
+        let follow = (button.innerHTML === 'follow') ? true : false;
+        let username = button.id.substring(11);
+        let response = await postData('/follow', {username : username, follow : follow});
+        if(response.status === 'error') throw new Error(`Server responded with ${response.error}`);
+        if(follow){
+            button.innerHTML = 'unfollow';
+            button.classList.remove("btn-primary");
+            button.classList.add("btn-secondary");
+        }else {
+            button.innerHTML = 'follow';
+            button.classList.remove("btn-secondary");
+            button.classList.add("btn-primary");
+        }
+        update_user_follow_profile(username, follow);
+    }
+    catch (err) {
+        alert(`Got the following error message when button clicked: ${err.message}`);
+    }
 }
 
 

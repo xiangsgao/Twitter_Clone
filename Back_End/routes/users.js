@@ -206,14 +206,28 @@ router.post('/follow', protecting_routes.none_rediret_not_authen, async function
   try{
       let followed_user = await User.findOne({username: req.body.username});
       if(!followed_user) throw new Error('User to be followed is not found');
-      followed_user.followers.push(req.user.username);
-      followed_user.followersNum += 1;
-      req.user.following.push(followed_user.username);
-      req.user.followingNum += 1;
-      followed_user.markModified('followers');
-      req.user.markModified('following');
-      await followed_user.save();
-      await req.user.save();
+      if(typeof req.body.follow === 'undefined') req.body.follow = true;
+
+      if(req.body.follow){
+        followed_user.followers.push(req.user.username);
+        followed_user.followersNum += 1;
+        req.user.following.push(followed_user.username);
+        req.user.followingNum += 1;
+        followed_user.markModified('followers');
+        req.user.markModified('following');
+        await followed_user.save();
+        await req.user.save();
+      }else{
+        followed_user.followers.pop(req.user.username);
+        followed_user.followersNum -= 1;
+        req.user.following.pop(followed_user.username);
+        req.user.followingNum -= 1;
+        followed_user.markModified('followers');
+        req.user.markModified('following');
+        await followed_user.save();
+        await req.user.save();
+      }
+
       return res.send({status: "OK"});
     } catch (err) {
       return res.status(500).send({status: "error", error: err.message});

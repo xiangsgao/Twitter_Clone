@@ -23,7 +23,7 @@ img {
     padding-left: 15px;
 }
 
-.card-body > *{
+.card-body > p{
     word-wrap:break-word;
 }
 
