@@ -98,16 +98,16 @@ function update_user_follow_profile(target_user, follow){
         let following = $(`#following-${userName}`);
         let following_array = following[0].innerHTML.split(', ');
         following_array.push(target_user);
-        following_array.filter((element) => element !== '');
-        following[0].innerHTML = (following_array.length > 1) ? following_array.join(', ') : following_array;
+        // following_array.filter((element) => element !== '');
+        following[0].innerHTML = (following_array.length > 2) ? following_array.join(', ') : following_array[1];
         let followers_count = $(`#followers_count-${target_user}`);
         temp = parseInt(followers_count[0].innerHTML.substring(10)) + 1;
         followers_count[0].innerHTML = `followers: ${temp}`;
         let followers = $(`#followers-${target_user}`);
         let followers_array = followers[0].innerHTML.split(', ');
         followers_array.push(userName);
-        followers_array.filter((element) => element !== '');
-        followers[0].innerHTML = (following_array.length > 1) ? followers_array.join(', ') : followers_array;
+        // followers_array.filter((element) => element !== '');
+        followers[0].innerHTML = (following_array.length > 2) ? followers_array.join(', ') : followers_array[1];
     }else{
         let following_count = $(`#following_count-${userName}`);
         let temp = parseInt(following_count[0].innerHTML.substring(10)) - 1;
@@ -115,16 +115,16 @@ function update_user_follow_profile(target_user, follow){
         let following = $(`#following-${userName}`);
         let following_array = following[0].innerHTML.split(', ');
         following_array.pop(target_user);
-        following_array.filter((element) => element !== '');
-        following[0].innerHTML = (following_array.length > 1) ? following_array.join(', ') : following_array;
+        // following_array.filter((element) => element !== '');
+        following[0].innerHTML = (following_array.length > 2) ? following_array.join(', ') : following_array[1];
         let followers_count = $(`#followers_count-${target_user}`);
         temp = parseInt(followers_count[0].innerHTML.substring(10)) - 1;
         followers_count[0].innerHTML = `followers: ${temp}`;
         let followers = $(`#followers-${target_user}`);
         let followers_array = followers[0].innerHTML.split(', ');
         followers_array.pop(userName);
-        following_array.filter((element) => element !== '');
-        followers[0].innerHTML = (following_array.length > 1) ? followers_array.join(', ') : followers_array;
+        // following_array.filter((element) => element !== '');
+        followers[0].innerHTML = (following_array.length > 2) ? followers_array.join(', ') : followers_array[1];
     }
 }
 
