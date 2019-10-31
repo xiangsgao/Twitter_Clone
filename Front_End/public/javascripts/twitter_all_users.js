@@ -98,7 +98,7 @@ function update_user_follow_profile(target_user, follow){
         let following = $(`#following-${userName}`);
         let following_array = following[0].innerHTML.split(', ');
         following_array.push(target_user);
-        following_array.filter((element) => element != null);
+        following_array.filter((element) => element !== '');
         following[0].innerHTML = (following_array.length > 1) ? following_array.join(', ') : following_array;
         let followers_count = $(`#followers_count-${target_user}`);
         temp = parseInt(followers_count[0].innerHTML.substring(10)) + 1;
@@ -106,7 +106,7 @@ function update_user_follow_profile(target_user, follow){
         let followers = $(`#followers-${target_user}`);
         let followers_array = followers[0].innerHTML.split(', ');
         followers_array.push(userName);
-        followers_array.filter((element) => element != null);
+        followers_array.filter((element) => element !== '');
         followers[0].innerHTML = (following_array.length > 1) ? followers_array.join(', ') : followers_array;
     }else{
         let following_count = $(`#following_count-${userName}`);
@@ -115,7 +115,7 @@ function update_user_follow_profile(target_user, follow){
         let following = $(`#following-${userName}`);
         let following_array = following[0].innerHTML.split(', ');
         following_array.pop(target_user);
-        following_array.filter((element) => element != null);
+        following_array.filter((element) => element !== '');
         following[0].innerHTML = (following_array.length > 1) ? following_array.join(', ') : following_array;
         let followers_count = $(`#followers_count-${target_user}`);
         temp = parseInt(followers_count[0].innerHTML.substring(10)) - 1;
@@ -123,7 +123,7 @@ function update_user_follow_profile(target_user, follow){
         let followers = $(`#followers-${target_user}`);
         let followers_array = followers[0].innerHTML.split(', ');
         followers_array.pop(userName);
-        following_array.filter((element) => element != null);
+        following_array.filter((element) => element !== '');
         followers[0].innerHTML = (following_array.length > 1) ? followers_array.join(', ') : followers_array;
     }
 }
