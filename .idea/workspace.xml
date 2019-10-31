@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="a5dccc20-7e85-464a-8298-90507a806dde" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Front_End/public/javascripts/twitter_all_users.js" beforeDir="false" afterPath="$PROJECT_DIR$/Front_End/public/javascripts/twitter_all_users.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -80,7 +79,7 @@
       <workItem from="1572491339496" duration="6192000" />
       <workItem from="1572497998718" duration="280000" />
       <workItem from="1572498452947" duration="327000" />
-      <workItem from="1572557951857" duration="2048000" />
+      <workItem from="1572557951857" duration="2149000" />
     </task>
     <servers />
   </component>
