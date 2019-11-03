@@ -202,7 +202,7 @@ router.get('/user/:username/following', async function(req, res){
 });
 
 router.post('/follow', protecting_routes.none_rediret_not_authen, async function (req, res) {
-  console.log(req.body);
+  if(process.env.PRINT_REQUESTS === 'true') console.log(req.body);
   try{
       let followed_user = await User.findOne({username: req.body.username});
       if(!followed_user) throw new Error('User to be followed is not found');
