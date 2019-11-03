@@ -175,9 +175,9 @@ router.post('/search', async function (req, res) {
 
         // if query string is pass
         if(req.body.q && (req.body.q !== '')){
-            let wordlist = req.body.q.split(' ');
+            let wordlist = req.body.q.toLowerCase().split(' ');
             responseItems = responseItems.filter((element, index)=>{
-                let content = element.content.split(' ');
+                let content = element.content.toLowerCase().split(' ');
                 return wordlist.some(r=> content.indexOf(r) >= 0)
             });
         }
