@@ -33,7 +33,7 @@ function append_new_user(user){
     if(current_row.children().size() === 4){
         let container = current_row.parent();
         container.append("<div class=\"row\"></div>>");
-        current_row = container.children().eq(container.children.size() -1);
+        current_row = container.children().eq(container.children().size() -1);
     }
     let new_card_col = dummy_col.clone();
     new_card_col.find('h5').html(user.username);
