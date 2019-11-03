@@ -163,7 +163,7 @@ router.get('/user/:username/posts', async function(req, res){
   // if(process.env.PRINT_REQUESTS === 'true') console.log(req.params);
   try{
     let limit = (req.body.limit) ? req.body.limit : 50;
-    if(limit > 200) throw new Error('limit can not be more than 200');
+    if(limit > 200) limit = 200;
     let user = await User.findOne({username: req.params.username});
     if(!user) throw new Error('user not found');
     let items = await Item.find({_userId: user._id});
@@ -180,8 +180,8 @@ router.get('/user/:username/followers', async function(req, res){
   try{
     let user = await User.findOne({username: req.params.username});
     if(!user) throw new Error('user name with that user not found');
-    let limit = (req.body.limit) ? req.body.limit : 25;
-    if(limit > 200) throw new Error('max limit is 200');
+    let limit = (req.body.limit) ? req.body.limit : 50;
+    if(limit > 200) limit = 200;
     let responseFollowers = user.followers.slice(0, limit);
     return res.send({status: "OK", users: responseFollowers});
   }catch (err) {
@@ -193,8 +193,8 @@ router.get('/user/:username/following', async function(req, res){
   try{
     let user = await User.findOne({username: req.params.username});
     if(!user) throw new Error('user name with that user not found');
-    let limit = (req.body.limit) ? req.body.limit : 25;
-    if(limit > 200) throw new Error('max limit is 200');
+    let limit = (req.body.limit) ? req.body.limit : 50;
+    if(limit > 200) limit = 200;
     let responseFollowing = user.following.slice(0, limit);
     return res.send({status: "OK", users: responseFollowing});
   }catch (err) {
