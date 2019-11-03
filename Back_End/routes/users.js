@@ -176,6 +176,7 @@ router.get('/user/:username/posts', async function(req, res){
 });
 
 router.get('/user/:username/followers', async function(req, res){
+  if(process.env.PRINT_REQUESTS === 'true') console.log(req.body);
   try{
     let user = await User.findOne({username: req.params.username});
     if(!user) throw new Error('user name with that user not found');
