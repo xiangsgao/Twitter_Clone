@@ -178,6 +178,8 @@ router.post('/search', async function (req, res) {
             let wordlist = req.body.q.toLowerCase().split(' ');
             responseItems = responseItems.filter((element, index)=>{
                 let content = element.content.toLowerCase().split(' ');
+                console.log(content);
+                console.log(wordlist);
                 return wordlist.some(r=> content.indexOf(r) >= 0)
             });
         }
