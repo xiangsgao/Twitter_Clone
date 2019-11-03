@@ -160,7 +160,7 @@ router.get('/user/:username', async function (req, res) {
 });
 
 router.get('/user/:username/posts', async function(req, res){
-  // if(process.env.PRINT_REQUESTS === 'true') console.log(req.params);
+  if(process.env.PRINT_REQUESTS === 'true') console.log(req.body);
   try{
     let limit = (req.body.limit) ? req.body.limit : 50;
     if(limit > 200) limit = 200;
