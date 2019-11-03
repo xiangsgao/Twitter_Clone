@@ -144,7 +144,7 @@ router.post('/verify', protecting_routes.none_redirect_authen, async function(re
 });
 
 router.get('/user/:username', async function (req, res) {
-
+  if(process.env.PRINT_REQUESTS === 'true') console.log(req.body);
   try{
     let user = await User.findOne({username: req.params.username});
     if(!user) throw new Error('user not found');
@@ -176,7 +176,6 @@ router.get('/user/:username/posts', async function(req, res){
 });
 
 router.get('/user/:username/followers', async function(req, res){
-  if(process.env.PRINT_REQUESTS === 'true') console.log(req.body);
   try{
     let user = await User.findOne({username: req.params.username});
     if(!user) throw new Error('user name with that user not found');
@@ -203,7 +202,7 @@ router.get('/user/:username/following', async function(req, res){
 });
 
 router.post('/follow', protecting_routes.none_rediret_not_authen, async function (req, res) {
-  if(process.env.PRINT_REQUESTS === 'true') console.log(req.body);
+
   try{
       let followed_user = await User.findOne({username: req.body.username});
       if(!followed_user) throw new Error('User to be followed is not found');
