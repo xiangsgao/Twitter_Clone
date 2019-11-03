@@ -175,9 +175,13 @@ router.post('/search', async function (req, res) {
 
         // if query string is pass
         if(req.body.q && (req.body.q !== '')){
+            let wordlist = req.body.q.split(' ');
             responseItems = responseItems.filter((element, index)=>{
                 let content = element.content;
-                return (content.includes(req.body.q));
+                wordlist.filter((element, index)=>{
+                    return content.includes(element);
+                });
+                return (wordlist.length !== 0);
             });
         }
 
