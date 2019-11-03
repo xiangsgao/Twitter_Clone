@@ -155,7 +155,7 @@ router.get('/user/:username', async function (req, res) {
     };
     return res.json({status: "OK", user: responseJson});
   }catch (err) {
-    return res.status(500).send({stauts: "error", error: err.message});
+    return res.status(500).send({stauts: "error", error: err.message, user: "error"});
   }
 });
 
