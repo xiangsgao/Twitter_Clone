@@ -16,14 +16,14 @@ function authen_redirect(req, res, next){
 
 function none_rediret_not_authen(req, res, next){
     if(!req.isAuthenticated()){
-        return res.send({status: "error", error: "not logged in"});
+        return res.status(500).send({status: "error", error: "not logged in"});
     }
     next();
 }
 
 function none_redirect_authen(req, res, next){
     if(req.isAuthenticated()){
-        return res.send({status: "error", error: "log out first"});
+        return res.status(500).send({status: "error", error: "log out first"});
     }
     next();
 }

@@ -105,7 +105,6 @@ async function delete_item_only(item){
 }
 
 router.delete('/item/:id', none_rediret_not_authen, async function(req, res){
-
     try{
         let item = await Item.findOne({_id: req.params.id, _userId: req.user._id});
         if(!item) throw new Error('item not found or you do not own this item');
