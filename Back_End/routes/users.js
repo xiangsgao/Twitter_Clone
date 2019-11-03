@@ -160,9 +160,9 @@ router.get('/user/:username', async function (req, res) {
 });
 
 router.get('/user/:username/posts', async function(req, res){
-  if(process.env.PRINT_REQUESTS === 'true') console.log(query("limit"));
+  if(process.env.PRINT_REQUESTS === 'true') console.log(req.query("limit"));
   try{
-    let limit = (req.query("limit")) ? req.query("limit") : 50;
+    let limit = (req.query.limit) ? req.query.limit : 50;
     if(limit > 200) limit = 200;
     let user = await User.findOne({username: req.params.username});
     if(!user) throw new Error('user not found');
