@@ -144,7 +144,7 @@ router.post('/verify', protecting_routes.none_redirect_authen, async function(re
 });
 
 router.get('/user/:username', async function (req, res) {
-  if(process.env.PRINT_REQUESTS === 'true') console.log(req.params);
+  // if(process.env.PRINT_REQUESTS === 'true') console.log(req.params);
   try{
     let user = await User.findOne({username: req.params.username});
     if(!user) throw new Error('user not found');

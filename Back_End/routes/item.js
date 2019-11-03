@@ -124,7 +124,7 @@ router.delete('/item/:id', none_rediret_not_authen, async function(req, res){
 
 // TODO finishes the rest of the filter
 router.post('/search', async function (req, res) {
-    // if(process.env.PRINT_REQUESTS === 'true') console.log(req.body);
+    if(process.env.PRINT_REQUESTS === 'true') console.log(req.body);
     try{
         let timestamp = (req.body.timestamp) ? req.body.timestamp * 1000 : Date.now();
         let limit = (req.body.limit) ? req.body.limit : 25;
