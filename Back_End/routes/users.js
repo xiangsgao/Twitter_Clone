@@ -56,7 +56,7 @@ router.get('/all_users_json', async function (req, res) {
 
 router.post('/login', protecting_routes.none_redirect_authen, function(req, res, next) {
   passport.authenticate('local', function(err, user, info) {
-    if (err) { res.status(500).send({status: "error", error: err.message})};
+    if (err) { return res.status(500).send({status: "error", error: err.message})};
     if (!user || (user.isVerified == false)) { return res.json({status: "error", error: "credential invalid or user not verified"})};
     req.logIn(user, function(err) {
       if (err) { return res.status(500).send({status: "error", error: err.message})};
@@ -67,7 +67,7 @@ router.post('/login', protecting_routes.none_redirect_authen, function(req, res,
 
 router.post('/logout', protecting_routes.none_rediret_not_authen, (req, res) => {
   req.logout();
-  res.send({status: "OK"});
+  return res.send({status: "OK"});
 });
 
 router.post('/adduser', protecting_routes.none_redirect_authen, async function(req, res, next) {
@@ -110,7 +110,7 @@ router.post('/adduser', protecting_routes.none_redirect_authen, async function(r
     });
     return res.send({status: "OK"});
   }catch (err) {
-    if(err) return res.status(500).send({status: "error", error: err.message});
+    return res.status(500).send({status: "error", error: err.message});
   }
 });
 
@@ -126,9 +126,6 @@ router.post('/verify', protecting_routes.none_redirect_authen, async function(re
       await user.save();
       return res.send({status:"OK"});
     }
-
-
-
     let token = await Token.findOne({token: req.body.key});
     if(token == null) return res.status(400).send({status: 'error', error: 'We were unable to find a valid token. Your token my have expired.'});
     let user = await User.findOne({ _id: token._userId, email: req.body.email});
@@ -139,7 +136,7 @@ router.post('/verify', protecting_routes.none_redirect_authen, async function(re
     await user.save();
     return res.send({status:"OK"});
   }catch (err) {
-    if(err) return res.status(500).send({status: "error", error: err.message});
+    return res.status(500).send({status: "error", error: err.message});
   }
 });
 
@@ -185,7 +182,7 @@ router.get('/user/:username/followers', async function(req, res){
     let responseFollowers = user.followers.slice(0, limit);
     return res.send({status: "OK", users: responseFollowers});
   }catch (err) {
-    res.status(500).send({status: "error", error: err.message});
+    return res.status(500).send({status: "error", error: err.message});
   }
 });
 
@@ -198,7 +195,7 @@ router.get('/user/:username/following', async function(req, res){
     let responseFollowing = user.following.slice(0, limit);
     return res.send({status: "OK", users: responseFollowing});
   }catch (err) {
-    res.status(500).send({status: "error", error: err.message});
+    return res.status(500).send({status: "error", error: err.message});
   }
 });
 
