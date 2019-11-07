@@ -97,7 +97,7 @@ function update_user_follow_profile(target_user, follow){
         following_count[0].innerHTML = `Following: ${temp}`;
         let following = $(`#following-${userName}`);
         let following_array = following[0].innerHTML.split(', ');
-        following_array.shift();
+        if(following_array[0] === '') following_array.shift();
         following_array.push(target_user);
         following[0].innerHTML = (following_array.length > 1) ? following_array.join(', ') : following_array[0];
         let followers_count = $(`#followers_count-${target_user}`);
@@ -105,8 +105,8 @@ function update_user_follow_profile(target_user, follow){
         followers_count[0].innerHTML = `followers: ${temp}`;
         let followers = $(`#followers-${target_user}`);
         let followers_array = followers[0].innerHTML.split(', ');
+        if(followers_array[0] === '') followers_array.shift();
         followers_array.push(userName);
-        followers_array.shift();
         followers[0].innerHTML = (following_array.length > 1) ? followers_array.join(', ') : followers_array[1];
     }else{
         let following_count = $(`#following_count-${userName}`);
