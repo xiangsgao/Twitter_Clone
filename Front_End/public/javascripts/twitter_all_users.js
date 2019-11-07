@@ -116,7 +116,7 @@ function update_user_follow_profile(target_user, follow){
         let following_array = following[0].innerHTML.split(', ');
         following_array.pop(target_user);
         if(following_array.length === 0) following_array.push('');
-        following[0].innerHTML = (following_array.length > 2) ? following_array.join(', ') : following_array[0];
+        following[0].innerHTML = (following_array.length !== 1) ? following_array.join(', ') : following_array[0];
         let followers_count = $(`#followers_count-${target_user}`);
         temp = parseInt(followers_count[0].innerHTML.substring(10)) - 1;
         followers_count[0].innerHTML = `followers: ${temp}`;
@@ -124,7 +124,7 @@ function update_user_follow_profile(target_user, follow){
         let followers_array = followers[0].innerHTML.split(', ');
         followers_array.pop(userName);
         if(followers_array.length === 0) followers_array.push('');
-        followers[0].innerHTML = (following_array.length > 2) ? followers_array.join(', ') : followers_array[0];
+        followers[0].innerHTML = (following_array.length !== 1) ? followers_array.join(', ') : followers_array[0];
     }
 }
 
