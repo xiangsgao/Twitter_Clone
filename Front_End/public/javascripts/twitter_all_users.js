@@ -107,7 +107,7 @@ function update_user_follow_profile(target_user, follow){
         let followers_array = followers[0].innerHTML.split(', ');
         if(followers_array[0] === '') followers_array.shift();
         followers_array.push(userName);
-        followers[0].innerHTML = (following_array.length > 1) ? followers_array.join(', ') : followers_array[1];
+        followers[0].innerHTML = (following_array.length > 1) ? followers_array.join(', ') : followers_array[0];
     }else{
         let following_count = $(`#following_count-${userName}`);
         let temp = parseInt(following_count[0].innerHTML.substring(10)) - 1;
