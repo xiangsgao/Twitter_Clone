@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a5dccc20-7e85-464a-8298-90507a806dde" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Back_End/routes/twitter.js" beforeDir="false" afterPath="$PROJECT_DIR$/Back_End/routes/twitter.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Front_End/public/javascripts/twitter_all_users.js" beforeDir="false" afterPath="$PROJECT_DIR$/Front_End/public/javascripts/twitter_all_users.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -30,7 +31,7 @@
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/Back_End/bin/www" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs.protractor.protractor_package" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
@@ -84,7 +85,12 @@
       <workItem from="1572802904667" duration="4669000" />
       <workItem from="1572813630663" duration="2994000" />
       <workItem from="1573095268201" duration="439000" />
-      <workItem from="1573095917211" duration="1599000" />
+      <workItem from="1573095917211" duration="2206000" />
+      <workItem from="1573283719324" duration="25000" />
+      <workItem from="1573426336094" duration="19000" />
+      <workItem from="1573526820074" duration="3000" />
+      <workItem from="1573538756542" duration="26000" />
+      <workItem from="1573775372595" duration="285000" />
     </task>
     <servers />
   </component>

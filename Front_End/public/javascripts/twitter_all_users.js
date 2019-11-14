@@ -55,7 +55,7 @@ function append_new_user(user){
     following.attr("id", `following-${user.username}`);
 
     let link = new_card_col.find('a');
-    link.attr("href", `/search_item/${user.username}`);
+    link.attr("href", `/search_item?username=${user.username}`);
 
     let follow_btn = new_card_col.find('#dummy_follow_button');
     follow_btn.attr('id', `follow_btn-${user.username}`);
