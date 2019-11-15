@@ -134,71 +134,71 @@ router.post('/search', async function (req, res) {
         let items = await Item.find({
             createdAt: {$lte: new Date(timestamp).toISOString()} // find the items in which the timestamp is less or equal
         });
-        // let responseItems = [];
-        // for(let i = 0; i < items.length; i++){
-        //     let current_item = items[i];
-        //     let current_item_user = await User.findOne({_id: current_item._userId});
-        //     if(!current_item_user) throw new Error('current item user not found');
-        //
-        //     // filter by user name if username is provided
-        //     if(req.body.username){
-        //         if(req.body.username !== current_item_user.username) continue;
-        //     };
-        //
-        //     // filtered by items made by the user the logged in user is following
-        //     if(req.body.following){
-        //         if(!req.isAuthenticated()) {
-        //             throw new Error('user needs to be logged in to use following in advance search');
-        //         }
-        //         if(!req.user.following.includes(current_item_user.username)) continue;
-        //     }
-        //
-        //     // if query string is pass
-        //     if(req.body.q && (req.body.q !== '')){
-        //         let wordlist = req.body.q.toLowerCase().split(' ');
-        //         let content = current_item.content.toLowerCase().split(' ');
-        //         if(!(wordlist.some(r=> content.indexOf(r) >= 0))) continue;
-        //     }
-        //
-        //     // if hasMedia is passed
-        //     if(req.body.hasMedia){
-        //         if(current_item.media.length === 0) continue;
-        //     }
-        //
-        //     if(req.body.parent){
-        //         if(!(current_item._parentId === req.body.parent)) continue;
-        //     }
-        //
-        //     if(!req.body.replies){
-        //         if(current_item.childType === "reply") continue;
-        //     }
-        //
-        //     let current_json = {
-        //         id: current_item._id,
-        //         username: current_item_user.username,
-        //         property: {likes: current_item.likes},
-        //         retweeted: current_item.retweeted,
-        //         content: current_item.content,
-        //         timestamp: new Date(current_item.createdAt).getTime(),
-        //         media: current_item.media,
-        //         parent: current_item._parentId,
-        //         media: current_item.media,
-        //         parent: (req.body.replies) ? current_item._parentId : undefined,
-        //         childType: current_item.childType
-        //     }
-        //
-        //     responseItems.push(current_json);
-        // }
-        //
-        // if(req.body.rank === "time"){
-        //
-        // } else if(req.body.rank === "interest"){
-        //
-        // }
-        //
-        // // return the limit number of items
-        // responseItems = responseItems.slice(0, limit);
-        // return res.send({status: "OK", items: responseItems});
+        let responseItems = [];
+        for(let i = 0; i < items.length; i++){
+            let current_item = items[i];
+            let current_item_user = await User.findOne({_id: current_item._userId});
+            if(!current_item_user) throw new Error('current item user not found');
+
+            // filter by user name if username is provided
+            if(req.body.username){
+                if(req.body.username !== current_item_user.username) continue;
+            };
+
+            // filtered by items made by the user the logged in user is following
+            if(req.body.following){
+                if(!req.isAuthenticated()) {
+                    throw new Error('user needs to be logged in to use following in advance search');
+                }
+                if(!req.user.following.includes(current_item_user.username)) continue;
+            }
+
+            // if query string is pass
+            if(req.body.q && (req.body.q !== '')){
+                let wordlist = req.body.q.toLowerCase().split(' ');
+                let content = current_item.content.toLowerCase().split(' ');
+                if(!(wordlist.some(r=> content.indexOf(r) >= 0))) continue;
+            }
+
+            // if hasMedia is passed
+            if(req.body.hasMedia){
+                if(current_item.media.length === 0) continue;
+            }
+
+            if(req.body.parent){
+                if(!(current_item._parentId === req.body.parent)) continue;
+            }
+
+            if(!req.body.replies){
+                if(current_item.childType === "reply") continue;
+            }
+
+            let current_json = {
+                id: current_item._id,
+                username: current_item_user.username,
+                property: {likes: current_item.likes},
+                retweeted: current_item.retweeted,
+                content: current_item.content,
+                timestamp: new Date(current_item.createdAt).getTime(),
+                media: current_item.media,
+                parent: current_item._parentId,
+                media: current_item.media,
+                parent: (req.body.replies) ? current_item._parentId : undefined,
+                childType: current_item.childType
+            }
+
+            responseItems.push(current_json);
+        }
+
+        if(req.body.rank === "time"){
+
+        } else if(req.body.rank === "interest"){
+
+        }
+
+        // return the limit number of items
+        responseItems = responseItems.slice(0, limit);
+        return res.send({status: "OK", items: responseItems});
         return res.send({status: "error", error: "debugging"});
     }catch (err) {
         return res.status(500).send({status: "error", error: err.message});
