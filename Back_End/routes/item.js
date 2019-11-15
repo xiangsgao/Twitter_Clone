@@ -131,13 +131,34 @@ router.post('/search', async function (req, res) {
 
         // first filters by time stamp
         let items = await Item.find({
-            createdAt: {$lte: new Date(timestamp).toISOString()} // find the items in which the timestamp is less or equal
+            createdAt: {$lte: new Date(timestamp).toISOString()}, // find the items in which the timestamp is less or equal
         });
         let responseItems = [];
         for(let i = 0; i < items.length; i++){
             let current_item = items[i];
             let current_item_user = await User.findOne({_id: current_item._userId});
             if(!current_item_user) throw new Error('current item user not found');
+
+            // filter by user name if username is provided
+            if(req.body.username){
+                if(req.body.username !== current_item_user.username) continue;
+            };
+
+            // filtered by items made by the user the logged in user is following
+            if(req.body.following){
+                if(!req.isAuthenticated()) {
+                    throw new Error('user needs to be logged in to use following in advance search');
+                }
+                if(!req.user.following.includes(current_item_user.username)) continue;
+            }
+
+            // if query string is pass
+            if(req.body.q && (req.body.q !== '')){
+                let wordlist = req.body.q.toLowerCase().split(' ');
+                let content = current_item.content.toLowerCase().split(' ');
+                if(!(wordlist.some(r=> content.indexOf(r) >= 0))) continue;
+            }
+
             let current_json = {
                 id: current_item._id,
                 username: current_item_user.username,
@@ -152,35 +173,6 @@ router.post('/search', async function (req, res) {
             }
             responseItems.push(current_json);
         }
-
-        // filter by user name if username is provided
-        if(req.body.username){
-          responseItems = responseItems.filter((element, index)=>{
-              return (element.username === req.body.username);
-          });
-        };
-
-        // filtered by items made by the user the logged in user is following
-        if(req.body.following){
-            if(!req.isAuthenticated()) {
-                throw new Error('user needs to be logged in to use following in advance search');
-            }
-
-            responseItems = responseItems.filter((element, index)=>{
-                let item_username = element.username;
-                return (req.user.following.includes(item_username));
-            });
-        }
-
-        // if query string is pass
-        if(req.body.q && (req.body.q !== '')){
-            let wordlist = req.body.q.toLowerCase().split(' ');
-            responseItems = responseItems.filter((element, index)=>{
-                let content = element.content.toLowerCase().split(' ');
-                return wordlist.some(r=> content.indexOf(r) >= 0)
-            });
-        }
-
 
         // return the limit number of items
         responseItems = responseItems.slice(0, limit);
