@@ -3,8 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a5dccc20-7e85-464a-8298-90507a806dde" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back_End/app_compoents/protecting_routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/Back_End/app_compoents/protecting_routes.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back_End/routes/item.js" beforeDir="false" afterPath="$PROJECT_DIR$/Back_End/routes/item.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front_End/public/javascripts/twitter_all_users.js" beforeDir="false" afterPath="$PROJECT_DIR$/Front_End/public/javascripts/twitter_all_users.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
