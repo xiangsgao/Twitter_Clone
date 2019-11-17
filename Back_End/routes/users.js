@@ -55,10 +55,10 @@ router.get('/all_users_json', async function (req, res) {
 
 
 router.post('/login', protecting_routes.none_redirect_authen, function(req, res, next) {
-  if(process.env.PRINT_REQUESTS === "true") console.log(req.body);
+  // if(process.env.PRINT_REQUESTS === "true") console.log(req.body);
   passport.authenticate('local', function(err, user, info) {
     if (err) { return res.status(500).send({status: "error", error: err.message})};
-    if (!user || (user.isVerified == false)) { return res.json({status: "error", error: "credential invalid or user not verified"})};
+    if (!user || (user.isVerified == false)) { return res.status(500).send({status: "error", error: "credential invalid or user not verified"})};
     req.logIn(user, function(err) {
       if (err) { return res.status(500).send({status: "error", error: err.message})};
       return res.json({status: "OK"});
