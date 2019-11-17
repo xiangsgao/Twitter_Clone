@@ -512,3 +512,7 @@ blockquote.twitter-tweet div.tweet_properties p.tweet_properties {
     font-size: 5px;
     font-weight: lighter;
 }
+
+.spinner{
+    display: none;
+}

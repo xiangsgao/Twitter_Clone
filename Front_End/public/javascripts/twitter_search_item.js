@@ -18,7 +18,9 @@ function main() {
     $('#model_search_button')[0].addEventListener('click', advance_search);
     dummy = $('#dummy');
     dummy.detach();
-    if($('#table_filter')[0].value !== '')simple_search(null);
+    if($('#table_filter')[0].value !== ''){
+        simple_search(null);
+    }
 }
 
 function simple_search(event){
@@ -73,10 +75,14 @@ async function populate_time_line(search_json){
         let response = await postData('/search', search_json);
         if(response.status === 'error') throw new Error(`Server responded with ${response.error}`)
         let items = response.items;
+        $("#spinner").show();
+        $("#time_line").hide();
         $('#time_line').empty();
         items.forEach((element, index) =>{
             append_to_time_line(element);
         });
+        $("#spinner").hide();
+        $("#time_line").show();
     }catch (err) {
         alert(`Page encountered this error when loading: ${err.message}`);
     }

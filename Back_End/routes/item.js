@@ -199,7 +199,6 @@ router.post('/search', async function (req, res) {
         // return the limit number of items
         responseItems = responseItems.slice(0, limit);
         return res.send({status: "OK", items: responseItems});
-        return res.send({status: "error", error: "debugging"});
     }catch (err) {
         return res.status(500).send({status: "error", error: err.message});
     }

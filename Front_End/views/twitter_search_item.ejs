@@ -2,6 +2,7 @@
 <html>
 <head>
     <title>Main Page</title>
+    <script src="https://kit.fontawesome.com/c99e9206a7.js" crossorigin="anonymous"></script>
     <script type="text/javascript" src="/javascripts/twitter_search_item.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -44,19 +45,32 @@
     </div>
 </div>
 
-
-<div id="time_line" class="col-xl">
-    <div id="dummy" class="tweet-container">
-        <blockquote class="twitter-tweet">
-            <div id="tweet_title" class="quoteHeader"><p class="quoteHeader_paragraph">2019-10-23 Developer said:</p></div>
-            <p id="tweet_content" class="tweet_content_class">This is a dummy tweet</p>
-            <div id="tweet_properties" class="quoteFooter">
-                <button id="properties_delete_button" class="btn_tweetFooter"><i class="fa fa-trash"></i></button>
-                <p id="properties_paragraph" class="properties_paragraph_class"></p>
-            </div>
-        </blockquote>
+<div id="spinner" class="spinner container">
+    <div class="row">
+        <div class="col-sm-12">
+            <i class="fa-9x fas fa-spinner fa-pulse"></i>
+        </div>
     </div>
 </div>
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div id="time_line" class="col-xl">
+            <div id="dummy" class="tweet-container">
+                <blockquote class="twitter-tweet">
+                    <div id="tweet_title" class="quoteHeader"><p class="quoteHeader_paragraph">2019-10-23 Developer said:</p></div>
+                    <p id="tweet_content" class="tweet_content_class">This is a dummy tweet</p>
+                    <div id="tweet_properties" class="quoteFooter">
+                        <button id="properties_delete_button" class="btn_tweetFooter"><i class="fa fa-trash"></i></button>
+                        <p id="properties_paragraph" class="properties_paragraph_class"></p>
+                    </div>
+                </blockquote>
+            </div>
+        </div>
+    </div>
+</div>
+
 
 
 <!-- Modal -->
