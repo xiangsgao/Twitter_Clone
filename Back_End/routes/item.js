@@ -196,11 +196,11 @@ router.post('/search', async function (req, res) {
 
         if(ranking === "time"){
             responseItems.sort((current, next) => {{
-                return (current > next) ? 1 : -1; // if current is greater than next then return 1 else -1
+                return (current.timestamp > next.timestamp) ? -1 : 1; // if current is greater than next then return -1 else 1. -1 comes first
             }});
         } else if(ranking === "interest"){
             responseItems.sort((current, next) => {{
-                return ((current.property.likes + current.retweeted) > (next.property.likes + next.retweeted)) ? 1 : -1;
+                return ((current.property.likes + current.retweeted) > (next.property.likes + next.retweeted)) ? -1 : 1;
             }});
         }
 
