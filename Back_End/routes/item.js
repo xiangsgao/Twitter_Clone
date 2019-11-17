@@ -170,7 +170,7 @@ router.post('/search', async function (req, res) {
             }
 
             if(req.body.parent){
-                if(!(current_item._parentId.equals(ObjectId(req.body.parent)))) continue;
+                if(!(current_item._parentId.toString() === req.body.parent)) continue;
             }
 
             if(!req.body.replies){
