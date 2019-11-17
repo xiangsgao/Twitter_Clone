@@ -63,8 +63,8 @@ const upload = multer({
 
 
 router.post('/addmedia', none_rediret_not_authen, upload.single('content'), async function (req, res) {
-    let media = new Media({_userId: req.user._id, _contentId: req._contentId});
     try{
+        let media = new Media({_userId: req.user._id, _contentId: req._contentId});
         await media.save();
         let response = {status: "OK", id: media._contentId};
         if(process.env.PRINT_RESULT === 'true') console.log(response);

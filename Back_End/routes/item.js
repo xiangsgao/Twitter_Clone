@@ -18,8 +18,8 @@ conn.once('open', ()=>{
 
 
 router.post('/additem', none_rediret_not_authen, async function (req, res) {
-
     try{
+        if(process.env.PRINT_REQUESTS === 'true') console.log(req.body);
         let item = new Item({_userId: ObjectId(req.user._id), content: req.body.content, childType: req.body.childType, _parentId: (req.body.parent) ? ObjectId(req.body.parent) : undefined});
         // media ids may need to be readjusted
         item.media = req.body.media;
