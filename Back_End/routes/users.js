@@ -121,17 +121,17 @@ router.post('/verify', protecting_routes.none_redirect_authen, async function(re
   try{
     if(req.body.key === "abracadabra"){
       let user = await User.findOne({email: req.body.email});
-      if (!user) return res.send({ status: "error", error: 'We were unable to find a user for this token.' });
-      if(user.isVerified) return res.send({ status: 'error', error: 'This user has already been verified.' });
+      if (!user) throw new Error('We were unable to find a user for this token.');
+      if(user.isVerified) throw new Error( "error', error: 'This user has already been verified.");
       user.isVerified = true;
       await user.save();
       return res.send({status:"OK"});
     }
     let token = await Token.findOne({token: req.body.key});
-    if(token == null) return res.status(400).send({status: 'error', error: 'We were unable to find a valid token. Your token my have expired.'});
+    if(token == null) throw new Error("error', error: 'We were unable to find a valid token. Your token my have expired.");
     let user = await User.findOne({ _id: token._userId, email: req.body.email});
-    if (!user) return res.send({ status: "error", error: 'We were unable to find a user for this token.' });
-    if(user.isVerified) return res.send({ status: 'error', error: 'This user has already been verified.' });
+    if (!user) throw new Error("We were unable to find a user for this token.");
+    if(user.isVerified) throw new Error("This user has already been verified.");
     // verify the user
     user.isVerified = true;
     await user.save();
