@@ -12,9 +12,9 @@ router.get('/main', function(req, res, next) {
 
 router.get('/search_item/', function(req, res, next) {
     if(req.isAuthenticated()){
-        return res.render('twitter_search_item', {sign_up_text:`Welcome ${req.user.username}`, login_text: 'Logout', search_text: ''});
+        return res.render('twitter_search_item', {sign_up_text:`Welcome ${req.user.username}`, login_text: 'Logout', search_text: (req.query.username) ? req.query.username : ''});
     }
-    res.render('twitter_search_item', {sign_up_text:`Sign Up`, login_text: 'Login', search_text: (req.query.username) ? req.query.username : ''});
+   return res.render('twitter_search_item', {sign_up_text:`Sign Up`, login_text: 'Login', search_text: (req.query.username) ? req.query.username : ''});
 });
 
 
