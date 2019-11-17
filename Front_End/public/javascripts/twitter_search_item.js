@@ -79,11 +79,14 @@ async function populate_time_line(search_json){
         $("#spinner").show();
         $("#time_line").hide();
         $('#time_line').empty();
-        items.forEach((element, index) =>{
-            append_to_time_line(element);
-        });
-        $("#spinner").hide();
-        $("#time_line").show();
+        setTimeout(() => {
+                items.forEach((element, index) =>{
+                    append_to_time_line(element);
+                });
+                $("#spinner").hide();
+                $("#time_line").show();
+            }, 1000);
+
     }catch (err) {
         alert(`Page encountered this error when loading: ${err.message}`);
     }
