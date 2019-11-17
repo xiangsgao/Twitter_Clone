@@ -217,6 +217,8 @@ router.post('/item/:id/like', none_rediret_not_authen, async function (req, res)
         if(process.env.PRINT_REQUESTS === 'true') console.log(req.body);
         let item = await Item.findOne({_id: req.params.id});
         if(!item) throw new Error('item not found');
+        if(item.likeBy.includes(req.user._id)) throw new Error("user already liked this item");
+        item.likeBy.push(req.user._id);
         item.likes += (req.body.like) ? 1 : -1;
         await item.save();
         res.send({status:"OK"});
