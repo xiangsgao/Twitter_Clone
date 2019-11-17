@@ -217,13 +217,20 @@ router.post('/item/:id/like', none_rediret_not_authen, async function (req, res)
         if(process.env.PRINT_REQUESTS === 'true') console.log(req.body);
         let item = await Item.findOne({_id: req.params.id});
         if(!item) throw new Error('item not found');
-        if(item.likeBy.includes(req.user._id)) throw new Error("user already liked this item");
-        item.likeBy.push(req.user._id);
+        if(item.likeBy.includes(req.user._id) && req.body.like) throw new Error("user already liked this item");
+        if(!item.likeBy.includes(req.user._id) && !req.body.like) throw new Error("user needs to like this item before he can unlike it");
+        if(req.body.like) {
+            item.likeBy.push(req.user._id);
+        }else{
+            let index = item.likeBy.indexOf(req.user._id);
+            if (index > -1) item.likeBy.splice(index, 1);
+        }
         item.likes += (req.body.like) ? 1 : -1;
         await item.save();
-        res.send({status:"OK"});
+        return res.send({status:"OK"});
     }catch (err) {
-        res.status(500).send({status: "error", error: err.message});
+        if(process.env.PRINT_ERRORS === 'true') console.log(err.message);
+        return res.status(500).send({status: "error", error: err.message});
     }
 });
 
