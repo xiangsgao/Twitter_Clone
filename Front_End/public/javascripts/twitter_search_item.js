@@ -73,11 +73,11 @@ async function postData(url = '', data = {}) {
 
 async function populate_time_line(search_json){
     try{
+        $("#spinner").show();
+        $("#time_line").hide();
         let response = await postData('/search', search_json);
         if(response.status === 'error') throw new Error(`Server responded with ${response.error}`)
         let items = response.items;
-        $("#spinner").show();
-        $("#time_line").hide();
         $('#time_line').empty();
         setTimeout(() => {
                 items.forEach((element, index) =>{
