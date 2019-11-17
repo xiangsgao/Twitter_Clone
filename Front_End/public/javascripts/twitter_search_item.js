@@ -20,6 +20,8 @@ function main() {
     dummy.detach();
     if($('#table_filter')[0].value !== ''){
         simple_search(null);
+    }else{
+        $("#spinner").hide();
     }
 }
 
