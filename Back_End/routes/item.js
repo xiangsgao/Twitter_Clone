@@ -23,11 +23,14 @@ router.post('/additem', none_rediret_not_authen, async function (req, res) {
         let item = new Item({_userId: ObjectId(req.user._id), content: req.body.content, childType: req.body.childType, _parentId: (req.body.parent) ? ObjectId(req.body.parent) : undefined});
         // media ids may need to be readjusted
         item.media = req.body.media;
-        // if media is field is not empty
+        // if media field is not empty
         if(item.media){
-            for(let i = 0; i < item.media.length; i++){
+            for(let i = 0; i < item.media.length; i++) {
                 let media = await Media.findOne({_contentId: ObjectId(item.media[i]), _userId: ObjectId(req.user._id)});
-                if(!media) throw new Error('one of the media id is invalid or not belong to you');
+                if (!media) throw new Error('one of the media id is invalid or not belong to you');
+                let current_media_id = item.media[i];
+                let items = Item.find({media: current_media_id});
+                if (items.length !== 0) throw new Error("This media content has been used in another item already");
             }
         }
 
