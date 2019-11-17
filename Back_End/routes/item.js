@@ -29,9 +29,8 @@ router.post('/additem', none_rediret_not_authen, async function (req, res) {
                 let media = await Media.findOne({_contentId: ObjectId(item.media[i]), _userId: ObjectId(req.user._id)});
                 if (!media) throw new Error('one of the media id is invalid or not belong to you');
                 let current_media_id = item.media[i];
-                let items = Item.find({media: current_media_id});
-                console.log(items);
-                if (items.length !== 0) throw new Error("This media content has been used in another item already");
+                let same_media_items = await Item.find({media: current_media_id});
+                if (same_media_items.length !== 0) throw new Error("This media content has been used in another item already");
             }
         }
 
