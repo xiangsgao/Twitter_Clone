@@ -80,9 +80,6 @@ async function populate_time_line(search_json){
         if(response.status === 'error') throw new Error(`Server responded with ${response.error}`)
         let items = response.items;
         $('#time_line').empty();
-        // setTimeout(() => {
-        //
-        //     }, 1);
         items.forEach((element, index) =>{
             append_to_time_line(element);
         });
