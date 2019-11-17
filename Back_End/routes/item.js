@@ -196,11 +196,11 @@ router.post('/search', async function (req, res) {
 
         if(ranking === "time"){
             responseItems.sort((current, next) => {{
-                return (current > next) ? -1 : 1;
+                return (current > next) ? 1 : -1; // if current is greater than next then return 1 else -1
             }});
         } else if(ranking === "interest"){
             responseItems.sort((current, next) => {{
-                return ((current.property.likes + current.retweeted) > (next.property.likes + next.retweeted)) ? -1 : 1;
+                return ((current.property.likes + current.retweeted) > (next.property.likes + next.retweeted)) ? 1 : -1;
             }});
         }
 
@@ -214,7 +214,7 @@ router.post('/search', async function (req, res) {
 
 router.post('/item/:id/like', none_rediret_not_authen, async function (req, res) {
     try{
-        if(process.env.PRINT_REQUESTS === 'true') console.log(req.body);
+        // if(process.env.PRINT_REQUESTS === 'true') console.log(req.body);
         let item = await Item.findOne({_id: req.params.id});
         if(!item) throw new Error('item not found');
         if(item.likeBy.includes(req.user._id) && req.body.like) throw new Error("user already liked this item");
@@ -229,7 +229,7 @@ router.post('/item/:id/like', none_rediret_not_authen, async function (req, res)
         await item.save();
         return res.send({status:"OK"});
     }catch (err) {
-        if(process.env.PRINT_ERRORS === 'true') console.log(err.message);
+        // if(process.env.PRINT_ERRORS === 'true') console.log(err.message);
         return res.status(500).send({status: "error", error: err.message});
     }
 });
