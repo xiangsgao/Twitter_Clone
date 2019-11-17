@@ -215,10 +215,9 @@ router.post('/search', async function (req, res) {
 router.post('/item/:id/like', none_rediret_not_authen, async function (req, res) {
     try{
         if(process.env.PRINT_REQUESTS === 'true') console.log(req.body);
-        let like = (req.body.like) ? (req.body.like === "true") : true;
         let item = await Item.findOne({_id: req.params.id});
         if(!item) throw new Error('item not found');
-        item.likes += (like) ? 1 : -1;
+        item.likes += (req.body.like) ? 1 : -1;
         await item.save();
         res.send({status:"OK"});
     }catch (err) {
