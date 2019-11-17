@@ -123,10 +123,11 @@ router.delete('/item/:id', none_rediret_not_authen, async function(req, res){
 
 // TODO finishes the rest of the filter
 router.post('/search', async function (req, res) {
-    // if(process.env.PRINT_REQUESTS === 'true') console.log(req.body);
+    if(process.env.PRINT_REQUESTS === 'true') console.log(req.body);
     try{
         let timestamp = (req.body.timestamp) ? req.body.timestamp * 1000 : Date.now();
         let limit = (req.body.limit) ? req.body.limit : 25;
+        let ranking = (req.body.rank) ? req.body.rank : "interest";
         if(limit > 100) throw new Error('limit can not be more than 100');
 
         req.body.replies = (typeof req.body.replies === 'undefined') ? true : req.body.replies;
@@ -190,10 +191,14 @@ router.post('/search', async function (req, res) {
             responseItems.push(current_json);
         }
 
-        if(req.body.rank === "time"){
-
-        } else if(req.body.rank === "interest"){
-
+        if(ranking === "time"){
+            responseItems.sort((current, next) => {{
+                return current > next;
+            }});
+        } else if(ranking === "interest"){
+            responseItems.sort((current, next) => {{
+                return (current.property.likes + current.retweeted) > (next.property.likes + next.retweeted);
+            }});
         }
 
         // return the limit number of items
