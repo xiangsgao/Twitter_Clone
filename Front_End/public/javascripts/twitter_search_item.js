@@ -18,6 +18,7 @@ function main() {
     $('#model_search_button')[0].addEventListener('click', advance_search);
     dummy = $('#dummy');
     dummy.detach();
+    $("#spinner").hide();
     if($('#table_filter')[0].value !== ''){
         simple_search(null);
     }
