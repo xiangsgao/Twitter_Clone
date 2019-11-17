@@ -84,7 +84,7 @@ async function populate_time_line(search_json){
                 });
                 $("#spinner").hide();
                 $("#time_line").show();
-            }, 1000);
+            }, 0);
 
     }catch (err) {
         alert(`Page encountered this error when loading: ${err.message}`);
