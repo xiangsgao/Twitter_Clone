@@ -80,13 +80,14 @@ async function populate_time_line(search_json){
         if(response.status === 'error') throw new Error(`Server responded with ${response.error}`)
         let items = response.items;
         $('#time_line').empty();
-        setTimeout(() => {
-                items.forEach((element, index) =>{
-                    append_to_time_line(element);
-                });
-                $("#spinner").hide();
-                $("#time_line").show();
-            }, 1);
+        // setTimeout(() => {
+        //
+        //     }, 1);
+        items.forEach((element, index) =>{
+            append_to_time_line(element);
+        });
+        $("#spinner").hide();
+        $("#time_line").show();
     }catch (err) {
         alert(`Page encountered this error when loading: ${err.message}`);
     }
