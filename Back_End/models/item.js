@@ -9,7 +9,7 @@ const itemSchema = new mongoose.Schema({
     retweeted:{type: Number, required: true, default: 0},
     childType: {type: String},
     content: {type: String, required: isThisFieldString},
-    media: []
+    media: [String]
 });
 
 function isThisFieldString () {
