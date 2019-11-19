@@ -140,7 +140,7 @@ router.post('/search', async function (req, res) {
         });
 
 
-       let responseItems = Promise.all(items.map(
+       let responseItems = await Promise.all(items.map(
            async (current_item) => {
                 let current_item_user = await User.findOne({_id: current_item._userId});
                 if(!current_item_user) throw new Error('current item user not found');
