@@ -33,6 +33,7 @@ p.small_container{
 }
 
 #spinner, #spinner li{
+    margin-top: 2%;
     text-align: center;
 }
 
