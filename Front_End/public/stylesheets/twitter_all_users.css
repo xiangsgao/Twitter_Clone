@@ -32,7 +32,7 @@ p.small_container{
 
 }
 
-#spinner li{
+#spinner, #spinner li{
     text-align: center;
 }
 
