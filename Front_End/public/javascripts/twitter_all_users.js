@@ -24,6 +24,7 @@ async function build_ui(){
         let response = await fetch('/all_users_json');
         let responseJson = await response.json();
         responseJson.users.forEach((element => append_new_user(element)));
+        $("#spinner").remove();
     }catch (err) {
         alert(`Can't load users, got this error: ${err.message}`);
     }
