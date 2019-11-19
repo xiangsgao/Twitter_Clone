@@ -198,7 +198,6 @@ router.post('/search', async function (req, res) {
         ));
 
 
-        console.log(responseItems);
         if(ranking === "time"){
             responseItems.sort((current, next) => {{
                 return (current.timestamp > next.timestamp) ? -1 : 1; // if current is greater than next then return -1 else 1. -1 comes first
