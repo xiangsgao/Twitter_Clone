@@ -16,7 +16,6 @@ function main() {
     current_row = dummy_col.parent();
     dummy_col.detach();
     login.addEventListener('click', login_link_on_click);
-    setTimeout(build_ui(), 1000);
 }
 
 async function build_ui(){
