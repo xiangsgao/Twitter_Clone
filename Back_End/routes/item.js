@@ -139,8 +139,8 @@ router.post('/search', async function (req, res) {
             createdAt: {$lte: new Date(timestamp).toISOString()} // find the items in which the timestamp is less or equal
         });
 
-
-       let responseItems = await Promise.all(items.map(
+        let responseItems = [];
+        await Promise.all(items.map(
            async (current_item) => {
                 let current_item_user = await User.findOne({_id: current_item._userId});
                 if(!current_item_user) throw new Error('current item user not found');
@@ -192,7 +192,7 @@ router.post('/search', async function (req, res) {
                     parent: (req.body.replies) ? current_item._parentId : undefined,
                     childType: current_item.childType
                 }
-                return current_json;
+                responseItems.push(current_json);
             }
         ));
 
