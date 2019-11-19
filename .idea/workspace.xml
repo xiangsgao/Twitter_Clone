@@ -3,7 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a5dccc20-7e85-464a-8298-90507a806dde" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Front_End/views/twitter_all_users.ejs" beforeDir="false" afterPath="$PROJECT_DIR$/Front_End/views/twitter_all_users.ejs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Front_End/public/javascripts/twitter_all_users.js" beforeDir="false" afterPath="$PROJECT_DIR$/Front_End/public/javascripts/twitter_all_users.js" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -96,7 +96,8 @@
       <workItem from="1574141435020" duration="5000" />
       <workItem from="1574141765594" duration="31000" />
       <workItem from="1574175728007" duration="3376000" />
-      <workItem from="1574183120774" duration="1334000" />
+      <workItem from="1574183120774" duration="1400000" />
+      <workItem from="1574184632977" duration="184000" />
     </task>
     <servers />
   </component>
