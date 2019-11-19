@@ -140,15 +140,14 @@ router.post('/search', async function (req, res) {
         });
 
 
-        let responseItems = [];
-        await Promise.all(items.map(
+       let responseItems = await Promise.all(items.map(
             async (current_item) => {
-                let current_item_user = await User.findOne({_id: current_item._userId});
+                let current_item_user = User.findOne({_id: current_item._userId});
                 if(!current_item_user) throw new Error('current item user not found');
 
                 // filter by user name if username is provided
                 if(req.body.username){
-                    if(req.body.username !== current_item_user.username) return ;
+                    if(req.body.username !== current_item_user.username) return;
                 };
 
                 // filtered by items made by the user the logged in user is following
@@ -193,10 +192,9 @@ router.post('/search', async function (req, res) {
                     parent: (req.body.replies) ? current_item._parentId : undefined,
                     childType: current_item.childType
                 }
-                responseItems.push(current_json);
+                return current_json;
             }
         ));
-
 
         if(ranking === "time"){
             responseItems.sort((current, next) => {{
