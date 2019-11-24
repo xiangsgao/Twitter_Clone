@@ -9,25 +9,28 @@
 </head>
 <body>
 
-<nav class="navbar navbar-inverse  navbar-static-top">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a class="navbar-brand" href="/main">Twitter Clone</a>
+    <nav class="navbar navbar-inverse  navbar-static-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand" href="/main">Twitter Clone</a>
+            </div>
+            <ul class="nav navbar-nav">
+                <li id="home" class="active"><a href="/main">Home</a></li>
+                <li id="search_item" ><a href="/search_item">Search Item</a></li>
+                <li id="add_item"><a  href="/add_item">Add Item</a></li>
+                <li id="all_users"><a  href="/all_users">All Users</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a id="sign_up" href="/adduser"><span class="glyphicon glyphicon-user"></span>  <%= sign_up_text %></a></li>
+                <li><a id="login" href="/login"><span class="glyphicon glyphicon-log-in"></span> <%= login_text %></a></li>
+            </ul>
         </div>
-        <ul class="nav navbar-nav">
-            <li id="home" class="active"><a href="/main">Home</a></li>
-            <li id="search_item" ><a href="/search_item">Search Item</a></li>
-            <li id="add_item"><a  href="/add_item">Add Item</a></li>
-            <li id="all_users"><a  href="/all_users">All Users</a></li>
-        </ul>
-        <ul class="nav navbar-nav navbar-right">
-            <li><a id="sign_up" href="/adduser"><span class="glyphicon glyphicon-user"></span>  <%= sign_up_text %></a></li>
-            <li><a id="login" href="/login"><span class="glyphicon glyphicon-log-in"></span> <%= login_text %></a></li>
-        </ul>
-    </div>
-</nav>
+    </nav>
 
-<button>verify</button>
+    <div class="container-fluid body_container">
+        <button>verify</button>
+    </div>
+
 
 
 
