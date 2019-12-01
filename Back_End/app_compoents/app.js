@@ -6,7 +6,9 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const env = require('dotenv').config({path: path.join(__dirname, '.env')});
-
+const fetch = require('node-fetch');
+const redis = require('redis');
+const redis_client = redis.createClient(process.env.REDIS_PORT);
 
 // basics mongoose import
 const mongoose = require('mongoose');
