@@ -9,6 +9,13 @@ const env = require('dotenv').config({path: path.join(__dirname, '.env')});
 const fetch = require('node-fetch');
 const redis = require('redis');
 const redis_client = redis.createClient(process.env.REDIS_PORT);
+// flash and sessions imports
+const flash = require('express-flash');
+const session = require('express-session');
+// passport imports for authentication
+const initPassport = require('./passport_init');
+const user_retrival = require('./user_retrival');
+const redis_store = require('connect-redis')(session);
 
 // basics mongoose import
 const mongoose = require('mongoose');
@@ -20,21 +27,18 @@ const twitterRouter = require('../routes/twitter');
 const mediaRouter = require('../routes/media');
 const itemRouter = require('../routes/item');
 
-// flash and sessions imports
-const flash = require('express-flash');
-const session = require('express-session');
+
 const passport = require('passport');
 
-// passport imports for authentication
-const initPassport = require('./passport_init');
-const user_retrival = require('./user_retrival');
+
 
 // basic sessions setup for express
 app.use(flash());
 app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
-  saveUninitialized: false
+  saveUninitialized: false,
+  store: new redis_store({ host: 'localhost', port: process.env.REDIS_PORT, client: redis_client, ttl: 86400 }) // saves the session id to redis, tll is session id expiration time
 }));
 
 // set up the passport for our back authentication
