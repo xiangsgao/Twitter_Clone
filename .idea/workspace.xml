@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="a5dccc20-7e85-464a-8298-90507a806dde" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back_End/routes/item.js" beforeDir="false" afterPath="$PROJECT_DIR$/Back_End/routes/item.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/server_setup.sh" beforeDir="false" afterPath="$PROJECT_DIR$/server_setup.sh" afterDir="false" />
-    </list>
+    <list default="true" id="a5dccc20-7e85-464a-8298-90507a806dde" name="Default Changelist" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />

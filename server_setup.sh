@@ -21,8 +21,7 @@ apt install redis-server -y; # cuz it is better than memecache, rememebr to edit
 nano /etc/redis/redis.conf;
 ufw allow 6379/tcp;
 setsebool -P httpd_can_network_connect 1; # do this on red hat, centos, and fedora
-cp ./twitter_clone_balancer.conf /etc/nginx/conf.d/
+mv ./twitter_clone_balancer.conf /etc/nginx/sites-available/default;
 nginx -s reload;
-systemctl reload nginx;
-cp ./nginx.conf /etc/nginx/nginx.conf
+systemctl reload nginx; 
 
