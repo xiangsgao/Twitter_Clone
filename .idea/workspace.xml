@@ -3,9 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="a5dccc20-7e85-464a-8298-90507a806dde" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Back_End/app_compoents/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/Back_End/app_compoents/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/server_setup.sh" beforeDir="false" afterPath="$PROJECT_DIR$/server_setup.sh" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +40,7 @@
     <property name="nodejs.protractor.protractor_package" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -114,7 +113,10 @@
       <workItem from="1575183590886" duration="12000" />
       <workItem from="1575183621590" duration="17000" />
       <workItem from="1575183661937" duration="549000" />
-      <workItem from="1575184221243" duration="5043000" />
+      <workItem from="1575184221243" duration="6317000" />
+      <workItem from="1575237222298" duration="1768000" />
+      <workItem from="1575244741332" duration="2408000" />
+      <workItem from="1575247747940" duration="2374000" />
     </task>
     <servers />
   </component>
@@ -139,21 +141,25 @@
       <screen x="0" y="27" width="1600" height="873" />
     </state>
     <state x="258" y="121" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1600.873@0.27.1600.873" timestamp="1575184234983" />
-    <state width="1577" height="185" key="GridCell.Tab.0.bottom" timestamp="1575230982473">
+    <state width="1577" height="183" key="GridCell.Tab.0.bottom" timestamp="1575250246875">
       <screen x="0" y="27" width="1600" height="873" />
     </state>
-    <state width="1577" height="185" key="GridCell.Tab.0.bottom/0.27.1600.873@0.27.1600.873" timestamp="1575230982473" />
-    <state width="1577" height="185" key="GridCell.Tab.0.center" timestamp="1575230982473">
+    <state width="1577" height="183" key="GridCell.Tab.0.bottom/0.27.1600.873@0.27.1600.873" timestamp="1575250246875" />
+    <state width="1577" height="183" key="GridCell.Tab.0.center" timestamp="1575250246875">
       <screen x="0" y="27" width="1600" height="873" />
     </state>
-    <state width="1577" height="185" key="GridCell.Tab.0.center/0.27.1600.873@0.27.1600.873" timestamp="1575230982473" />
-    <state width="1577" height="185" key="GridCell.Tab.0.left" timestamp="1575230982473">
+    <state width="1577" height="183" key="GridCell.Tab.0.center/0.27.1600.873@0.27.1600.873" timestamp="1575250246875" />
+    <state width="1577" height="183" key="GridCell.Tab.0.left" timestamp="1575250246875">
       <screen x="0" y="27" width="1600" height="873" />
     </state>
-    <state width="1577" height="185" key="GridCell.Tab.0.left/0.27.1600.873@0.27.1600.873" timestamp="1575230982473" />
-    <state width="1577" height="185" key="GridCell.Tab.0.right" timestamp="1575230982473">
+    <state width="1577" height="183" key="GridCell.Tab.0.left/0.27.1600.873@0.27.1600.873" timestamp="1575250246875" />
+    <state width="1577" height="183" key="GridCell.Tab.0.right" timestamp="1575250246875">
       <screen x="0" y="27" width="1600" height="873" />
     </state>
-    <state width="1577" height="185" key="GridCell.Tab.0.right/0.27.1600.873@0.27.1600.873" timestamp="1575230982473" />
+    <state width="1577" height="183" key="GridCell.Tab.0.right/0.27.1600.873@0.27.1600.873" timestamp="1575250246875" />
+    <state x="346" y="170" key="SettingsEditor" timestamp="1575244787244">
+      <screen x="0" y="27" width="1600" height="873" />
+    </state>
+    <state x="346" y="170" key="SettingsEditor/0.27.1600.873@0.27.1600.873" timestamp="1575244787244" />
   </component>
 </project>
