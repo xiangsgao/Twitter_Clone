@@ -132,12 +132,24 @@ router.post('/search', async function (req, res) {
         let limit = (req.body.limit) ? req.body.limit : 25;
         let ranking = (req.body.rank) ? req.body.rank : "interest";
         if(limit > 100) throw new Error('limit can not be more than 100');
-
         req.body.replies = (typeof req.body.replies === 'undefined') ? true : req.body.replies;
+
         // first filters by time stamp
         const query = {
             createdAt: {$lte: new Date(timestamp).toISOString()} // find the items in which the timestamp is less or equal
         };
+
+        // filter by user name if username is provided
+        if(req.body.username){
+            let user = await User.findOne({username: req.body.username});
+            query["_userId"] = user._id;
+        };
+
+        // if query string is pass
+        if(req.body.q && (req.body.q !== '')){
+            let wordlist = req.body.q.split(' ');
+
+        }
 
 
         let items = await Item.find(query);
@@ -148,24 +160,12 @@ router.post('/search', async function (req, res) {
                 let current_item_user = await User.findOne({_id: current_item._userId});
                 if(!current_item_user) throw new Error('current item user not found');
 
-                // filter by user name if username is provided
-                if(req.body.username){
-                    if(req.body.username !== current_item_user.username) return;
-                };
-
                 // filtered by items made by the user the logged in user is following
                 if(req.body.following){
                     if(!req.isAuthenticated()) {
                         throw new Error('user needs to be logged in to use following in advance search');
                     }
                     if(!req.user.following.includes(current_item_user.username)) return;
-                }
-
-                // if query string is pass
-                if(req.body.q && (req.body.q !== '')){
-                    let wordlist = req.body.q.toLowerCase().split(' ');
-                    let content = current_item.content.toLowerCase().split(' ');
-                    if(!(wordlist.some(r=> content.indexOf(r) >= 0))) return;
                 }
 
                 // if hasMedia is passed
