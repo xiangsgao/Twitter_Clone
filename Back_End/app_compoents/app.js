@@ -38,7 +38,7 @@ app.use(session({
   secret: process.env.SESSION_SECRET,
   resave: false,
   saveUninitialized: false,
-  store: new redis_store({ host: 'localhost', port: process.env.REDIS_PORT, client: redis_client, ttl: 86400 }) // saves the session id to redis, tll is session id expiration time
+  store: new redis_store({ host: process.env.REDIS_HOST, port: process.env.REDIS_PORT, client: redis_client, ttl: 86400 }) // saves the session id to redis, tll is session id expiration time
 }));
 
 // set up the passport for our back authentication
