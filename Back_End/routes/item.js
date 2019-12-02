@@ -142,15 +142,18 @@ router.post('/search', async function (req, res) {
         // filter by user name if username is provided
         if(req.body.username){
             let user = await User.findOne({username: req.body.username});
-            query["_userId"] = user._id;
-        };
+            query["_userId"] = (user) ? user._id: undefined;
+        }
 
         // if query string is pass
         if(req.body.q && (req.body.q !== '')){
-            let wordlist = req.body.q.split(' ');
-
+            query["$text"] = { $search: req.body.q}
         }
 
+        // filter if child type is a reply
+        if(!req.body.replies){
+            query["childType"] = "reply";
+        }
 
         let items = await Item.find(query);
 
@@ -176,10 +179,6 @@ router.post('/search', async function (req, res) {
                 if(req.body.parent){
                     if(!current_item._parentId) return;
                     if(!(current_item._parentId.toString() === req.body.parent)) return;
-                }
-
-                if(!req.body.replies){
-                    if(current_item.childType === "reply") return;
                 }
 
                 let current_json = {

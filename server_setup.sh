@@ -23,5 +23,9 @@ ufw allow 6379/tcp;
 setsebool -P httpd_can_network_connect 1; # do this on red hat, centos, and fedora
 mv ./twitter_clone_balancer.conf /etc/nginx/sites-available/default;
 nginx -s reload;
-systemctl reload nginx; 
+systemctl reload nginx;
+mongo;
+# paste in this line fater the data base is created:
+# use Twitter_Clone
+# db.items.createIndex({content: "text"});
 
