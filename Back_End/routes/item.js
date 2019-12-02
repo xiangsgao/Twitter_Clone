@@ -135,9 +135,12 @@ router.post('/search', async function (req, res) {
 
         req.body.replies = (typeof req.body.replies === 'undefined') ? true : req.body.replies;
         // first filters by time stamp
-        let items = await Item.find({
+        const query = {
             createdAt: {$lte: new Date(timestamp).toISOString()} // find the items in which the timestamp is less or equal
-        });
+        };
+
+
+        let items = await Item.find(query);
 
         let responseItems = [];
         await Promise.all(items.map(

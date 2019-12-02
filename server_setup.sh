@@ -33,10 +33,12 @@ a2ensite apache_reverse_proxy.conf;
 a2dissite 000-default.conf;
 systemctl stop apache2;
 apt install nginx -y;
+ufw allow 'Nginx Full'
 cd ..;
 cd Twitter_Clone/Back_End;
 apt-get install postfix -y; # for mailing verification services 
 apt install redis-server -y; # cuz it is better than memecache, rememebr to edit the port in /etc/redis.conf from bind 127.0.0.1 to 0.0.0.0 to allow connections from outside the localhost
+nano /etc/redis.conf;
 setsebool -P httpd_can_network_connect 1; # do this on red hat, centos, and fedora
 cp twitter_clone_balancer.conf /etc/nginx/conf.d/
 nginx -s reload;
