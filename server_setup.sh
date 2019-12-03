@@ -32,6 +32,7 @@ iptables -A INPUT -p tcp --dport 3001 -j ACCEPT;
 iptables -A INPUT -p tcp --dport 3002 -j ACCEPT;
 iptables -A INPUT -p tcp --dport 3003 -j ACCEPT;
 systemctl restart mongodb;
+chmod 777 ./run_node.sh;
 # paste in this line fater the data base is created:
 # use Twitter_Clone
 # db.items.createIndex({content: "text"});
