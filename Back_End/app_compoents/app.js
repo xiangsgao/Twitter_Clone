@@ -59,7 +59,18 @@ connection.on('connected', function() {
 app.set('views', path.join(process.env.FRONT_END_PATH, 'views'));
 app.set('view engine', 'ejs');
 
-if(process.env.USE_LOGGER === 'true') app.use(logger('dev'));
+
+if(process.env.USE_LOGGER === 'true') {
+  if(process.env.LOG_ERROR_ONLY === 'true') {
+    app.use(logger('dev', {
+      skip: function (req, res) {
+        return res.statusCode < 400
+      }
+    }));
+  }else{
+      app.use(logger('dev'));
+    }
+}
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
