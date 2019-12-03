@@ -6,7 +6,7 @@ if [[ $EUID -ne 0 ]]; then
 fi
 
 apt update;
-apt dist-upgrade -y;
+#apt dist-upgrade -y;
 apt install nodejs -y;
 apt install mongodb -y;
 apt install apache2 -y;
