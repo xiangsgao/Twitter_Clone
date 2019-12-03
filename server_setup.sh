@@ -24,12 +24,16 @@ setsebool -P httpd_can_network_connect 1; # do this on red hat, centos, and fedo
 mv ./twitter_clone_balancer.conf /etc/nginx/sites-available/default;
 nginx -s reload;
 systemctl reload nginx;
-mongo;
 mv ./mongod.conf /etc/mongod.conf
 iptables -A INPUT -p tcp --dport 27017 -j ACCEPT;
 iptables -A INPUT -p tcp --dport 27019 -j ACCEPT;
+iptables -A INPUT -p tcp --dport 3000 -j ACCEPT;
+iptables -A INPUT -p tcp --dport 3001 -j ACCEPT;
+iptables -A INPUT -p tcp --dport 3002 -j ACCEPT;
+iptables -A INPUT -p tcp --dport 3003 -j ACCEPT;
 systemctl restart mongodb;
 # paste in this line fater the data base is created:
 # use Twitter_Clone
 # db.items.createIndex({content: "text"});
+mongo;
 
