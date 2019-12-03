@@ -59,12 +59,13 @@ connection.on('connected', function() {
 app.set('views', path.join(process.env.FRONT_END_PATH, 'views'));
 app.set('view engine', 'ejs');
 
-
 if(process.env.USE_LOGGER === 'true') {
   if(process.env.LOG_ERROR_ONLY === 'true') {
     app.use(logger('dev', {
       skip: function (req, res) {
-        if(res.statusCode > 400) console.log(req.body);
+        if(res.statusCode > 400) {
+          console.log(req.body);
+        }
         return res.statusCode < 400
       }
     }));
