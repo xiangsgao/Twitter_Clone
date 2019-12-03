@@ -9,7 +9,6 @@ apt update;
 #apt dist-upgrade -y;
 apt install nodejs -y;
 apt install mongodb -y;
-apt install apache2 -y;
 apt install mysql-server -y;
 systemctl enable mongodb;
 systemctl start mongodb;
@@ -22,8 +21,7 @@ nano /etc/redis/redis.conf;
 ufw allow 6379/tcp;
 setsebool -P httpd_can_network_connect 1; # do this on red hat, centos, and fedora
 mv ./twitter_clone_balancer.conf /etc/nginx/sites-available/default;
-nginx -s reload;
-systemctl reload nginx;
+systemctl restart nginx;
 mv ./mongod.conf /etc/mongod.conf
 iptables -A INPUT -p tcp --dport 27017 -j ACCEPT;
 iptables -A INPUT -p tcp --dport 27019 -j ACCEPT;
