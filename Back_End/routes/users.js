@@ -112,6 +112,7 @@ router.post('/adduser', protecting_routes.none_redirect_authen, async function(r
     });
     return res.send({status: "OK"});
   }catch (err) {
+    console.log(err.message);
     res.err_msg = err.message;
     return res.status(ERR_CODE).send({status: "error", error: err.message});
   }
