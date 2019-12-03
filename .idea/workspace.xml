@@ -4,7 +4,6 @@
     <list default="true" id="a5dccc20-7e85-464a-8298-90507a806dde" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
-    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -26,14 +25,21 @@
   <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="1" id="Add" />
   </component>
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showExcludedFiles" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
   <component name="PropertiesComponent">
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs.protractor.protractor_package" value="" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
@@ -41,25 +47,25 @@
       <recent name="$PROJECT_DIR$/Front_End/public" />
     </key>
   </component>
-  <component name="RunDashboard">
-    <option name="ruleStates">
-      <list>
-        <RuleState>
-          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
-        </RuleState>
-        <RuleState>
-          <option name="name" value="StatusDashboardGroupingRule" />
-        </RuleState>
-      </list>
-    </option>
-  </component>
   <component name="RunManager">
     <configuration default="true" type="NodeJSConfigurationType" path-to-js-file="bin/www" working-dir="$PROJECT_DIR$/Back_End">
       <method v="2" />
     </configuration>
-    <configuration name="www" type="NodeJSConfigurationType" nameIsGenerated="true" path-to-js-file="bin/www" working-dir="$PROJECT_DIR$/Back_End">
+    <configuration name="www" type="NodeJSConfigurationType" application-parameters="3001" nameIsGenerated="true" path-to-js-file="bin/www" working-dir="$PROJECT_DIR$/Back_End">
       <method v="2" />
     </configuration>
+  </component>
+  <component name="ServiceViewManager">
+    <option name="viewStates">
+      <list>
+        <serviceView>
+          <treeState>
+            <expand />
+            <select />
+          </treeState>
+        </serviceView>
+      </list>
+    </option>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -102,8 +108,22 @@
       <workItem from="1574298636617" duration="46000" />
       <workItem from="1574466220594" duration="11000" />
       <workItem from="1574468315747" duration="741000" />
+<<<<<<< HEAD
       <workItem from="1574569876350" duration="2806000" />
       <workItem from="1574669167104" duration="12000" />
+=======
+      <workItem from="1574569876350" duration="1388000" />
+      <workItem from="1575183590886" duration="12000" />
+      <workItem from="1575183621590" duration="17000" />
+      <workItem from="1575183661937" duration="549000" />
+      <workItem from="1575184221243" duration="6317000" />
+      <workItem from="1575237222298" duration="1768000" />
+      <workItem from="1575244741332" duration="2408000" />
+      <workItem from="1575247747940" duration="8816000" />
+      <workItem from="1575267601948" duration="57000" />
+      <workItem from="1575268087678" duration="41000" />
+      <workItem from="1575268268614" duration="238000" />
+>>>>>>> 0248380cb55b31763408f48be8b940598f9a9fd1
     </task>
     <servers />
   </component>
@@ -122,5 +142,79 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="508" y="161" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1575264415391">
+      <screen x="0" y="27" width="1600" height="873" />
+    </state>
+    <state x="508" y="161" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.27.1600.873@0.27.1600.873" timestamp="1575264415391" />
+    <state width="1577" height="183" key="GridCell.Tab.0.bottom" timestamp="1575268506183">
+      <screen x="0" y="27" width="1600" height="873" />
+    </state>
+    <state width="1577" height="183" key="GridCell.Tab.0.bottom/0.27.1600.873@0.27.1600.873" timestamp="1575268506183" />
+    <state width="1577" height="183" key="GridCell.Tab.0.center" timestamp="1575268506183">
+      <screen x="0" y="27" width="1600" height="873" />
+    </state>
+    <state width="1577" height="183" key="GridCell.Tab.0.center/0.27.1600.873@0.27.1600.873" timestamp="1575268506183" />
+    <state width="1577" height="183" key="GridCell.Tab.0.left" timestamp="1575268506183">
+      <screen x="0" y="27" width="1600" height="873" />
+    </state>
+    <state width="1577" height="183" key="GridCell.Tab.0.left/0.27.1600.873@0.27.1600.873" timestamp="1575268506183" />
+    <state width="1577" height="183" key="GridCell.Tab.0.right" timestamp="1575268506183">
+      <screen x="0" y="27" width="1600" height="873" />
+    </state>
+    <state width="1577" height="183" key="GridCell.Tab.0.right/0.27.1600.873@0.27.1600.873" timestamp="1575268506183" />
+    <state width="777" height="272" key="GridCell.Tab.1.bottom" timestamp="1575265527658">
+      <screen x="0" y="27" width="1600" height="873" />
+    </state>
+    <state width="777" height="272" key="GridCell.Tab.1.bottom/0.27.1600.873@0.27.1600.873" timestamp="1575265527658" />
+    <state width="777" height="272" key="GridCell.Tab.1.center" timestamp="1575265527658">
+      <screen x="0" y="27" width="1600" height="873" />
+    </state>
+    <state width="777" height="272" key="GridCell.Tab.1.center/0.27.1600.873@0.27.1600.873" timestamp="1575265527658" />
+    <state width="777" height="272" key="GridCell.Tab.1.left" timestamp="1575265527657">
+      <screen x="0" y="27" width="1600" height="873" />
+    </state>
+    <state width="777" height="272" key="GridCell.Tab.1.left/0.27.1600.873@0.27.1600.873" timestamp="1575265527657" />
+    <state width="777" height="272" key="GridCell.Tab.1.right" timestamp="1575265527658">
+      <screen x="0" y="27" width="1600" height="873" />
+    </state>
+    <state width="777" height="272" key="GridCell.Tab.1.right/0.27.1600.873@0.27.1600.873" timestamp="1575265527658" />
+    <state width="777" height="272" key="GridCell.Tab.2.bottom" timestamp="1575265527659">
+      <screen x="0" y="27" width="1600" height="873" />
+    </state>
+    <state width="777" height="272" key="GridCell.Tab.2.bottom/0.27.1600.873@0.27.1600.873" timestamp="1575265527659" />
+    <state width="777" height="272" key="GridCell.Tab.2.center" timestamp="1575265527658">
+      <screen x="0" y="27" width="1600" height="873" />
+    </state>
+    <state width="777" height="272" key="GridCell.Tab.2.center/0.27.1600.873@0.27.1600.873" timestamp="1575265527658" />
+    <state width="777" height="272" key="GridCell.Tab.2.left" timestamp="1575265527658">
+      <screen x="0" y="27" width="1600" height="873" />
+    </state>
+    <state width="777" height="272" key="GridCell.Tab.2.left/0.27.1600.873@0.27.1600.873" timestamp="1575265527658" />
+    <state width="777" height="272" key="GridCell.Tab.2.right" timestamp="1575265527658">
+      <screen x="0" y="27" width="1600" height="873" />
+    </state>
+    <state width="777" height="272" key="GridCell.Tab.2.right/0.27.1600.873@0.27.1600.873" timestamp="1575265527658" />
+    <state width="777" height="272" key="GridCell.Tab.3.bottom" timestamp="1575265527660">
+      <screen x="0" y="27" width="1600" height="873" />
+    </state>
+    <state width="777" height="272" key="GridCell.Tab.3.bottom/0.27.1600.873@0.27.1600.873" timestamp="1575265527660" />
+    <state width="777" height="272" key="GridCell.Tab.3.center" timestamp="1575265527659">
+      <screen x="0" y="27" width="1600" height="873" />
+    </state>
+    <state width="777" height="272" key="GridCell.Tab.3.center/0.27.1600.873@0.27.1600.873" timestamp="1575265527659" />
+    <state width="777" height="272" key="GridCell.Tab.3.left" timestamp="1575265527659">
+      <screen x="0" y="27" width="1600" height="873" />
+    </state>
+    <state width="777" height="272" key="GridCell.Tab.3.left/0.27.1600.873@0.27.1600.873" timestamp="1575265527659" />
+    <state width="777" height="272" key="GridCell.Tab.3.right" timestamp="1575265527659">
+      <screen x="0" y="27" width="1600" height="873" />
+    </state>
+    <state width="777" height="272" key="GridCell.Tab.3.right/0.27.1600.873@0.27.1600.873" timestamp="1575265527659" />
+    <state x="346" y="170" key="SettingsEditor" timestamp="1575244787244">
+      <screen x="0" y="27" width="1600" height="873" />
+    </state>
+    <state x="346" y="170" key="SettingsEditor/0.27.1600.873@0.27.1600.873" timestamp="1575244787244" />
   </component>
 </project>
