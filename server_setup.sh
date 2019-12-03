@@ -26,8 +26,9 @@ nginx -s reload;
 systemctl reload nginx;
 mongo;
 mv ./mongod.conf /etc/mongod.conf
-systemctl restart mongodb;
 iptables -A INPUT -p tcp --dport 27017 -j ACCEPT;
+iptables -A INPUT -p tcp --dport 27019 -j ACCEPT;
+systemctl restart mongodb;
 # paste in this line fater the data base is created:
 # use Twitter_Clone
 # db.items.createIndex({content: "text"});
