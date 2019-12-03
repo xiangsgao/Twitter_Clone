@@ -1,4 +1,5 @@
 // for protecting the routes
+const ERR_CODE = 433;
 
 function not_authen_redirect(req, res, next){
     if(req.isAuthenticated()){
@@ -16,14 +17,14 @@ function authen_redirect(req, res, next){
 
 function none_rediret_not_authen(req, res, next){
     if(!req.isAuthenticated()){
-        return res.status(500).send({status: "error", error: "not logged in"});
+        return res.status(ERR_CODE).send({status: "error", error: "not logged in"});
     }
     next();
 }
 
 function none_redirect_authen(req, res, next){
     if(req.isAuthenticated()){
-        return res.status(500).send({status: "error", error: "log out first"});
+        return res.status(ERR_CODE).send({status: "error", error: "log out first"});
     }
     next();
 }
