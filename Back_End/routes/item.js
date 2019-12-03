@@ -214,6 +214,7 @@ router.post('/search', async function (req, res) {
         responseItems = responseItems.slice(0, limit);
         return res.send({status: "OK", items: responseItems});
     }catch (err) {
+        if(process.env.PRINT_ERRORS === "true")console.log(err.message);
         return res.status(ERR_CODE).send({status: "error", error: err.message});
     }
 });
