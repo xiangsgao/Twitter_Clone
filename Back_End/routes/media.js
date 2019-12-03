@@ -10,6 +10,7 @@ const conn = mongoose.createConnection(process.env.MONGO_DATABASE_URL);
 const {ObjectId} = require('mongodb');
 const {not_authen_redirect, authen_redirect, none_rediret_not_authen, none_redirect_authen} = require('../app_compoents/protecting_routes');
 let gfs; // this is what we are gonna use to retrieve images stored in the db
+const ERR_CODE = 433;
 conn.once('open', ()=>{
    gfs = Grid(conn.db, mongoose.mongo);
    gfs.collection('uploads');
@@ -71,7 +72,7 @@ router.post('/addmedia', none_rediret_not_authen, upload.single('content'), asyn
         return res.send(response);
     }catch (err) {
         if(process.env.PRINT_ERRORS === 'true') console.log(err.message);
-        return  res.status(500).send({status: "error", error: err.message});
+        return  res.status(ERR_CODE).send({status: "error", error: err.message});
     }
 });
 
@@ -88,7 +89,7 @@ router.get('/media/:id', none_rediret_not_authen, async function (req, res) {
         readstream.pipe(res);
         return;
     }catch (err) {
-        res.status(500).send({status: "error", error: err.message});
+        res.status(ERR_CODE).send({status: "error", error: err.message});
     }
 });
 

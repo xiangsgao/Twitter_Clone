@@ -10,6 +10,8 @@ const Grid = require('gridfs-stream');
 const {not_authen_redirect, authen_redirect, none_rediret_not_authen, none_redirect_authen} = require('../app_compoents/protecting_routes');
 // Grid.mongo = mongoose.mongo;
 
+const ERR_CODE = 433;
+
 let gfs; // this is what we are gonna use to retrieve images stored in the db
 conn.once('open', ()=>{
     gfs = Grid(conn.db, mongoose.mongo);
@@ -47,7 +49,7 @@ router.post('/additem', none_rediret_not_authen, async function (req, res) {
 
         return res.send({status: "OK", id: item._id});
     }catch (err) {
-        res.status(500).send({status: "error", error: err.message});
+        res.status(ERR_CODE).send({status: "error", error: err.message});
     }
 });
 
@@ -73,7 +75,7 @@ router.get('/item/:id', async function(req, res){
         };
         return res.send({status: "OK", item: responseJson});
     }catch (err) {
-        res.status(500).send({status: "error", error: err.message});
+        res.status(ERR_CODE).send({status: "error", error: err.message});
     }
 });
 
@@ -120,7 +122,7 @@ router.delete('/item/:id', none_rediret_not_authen, async function(req, res){
         await delete_item_only(item);
         return res.send({status: "OK"});
     }catch (err) {
-        return res.status(500).send({status:"error", error: err.message});
+        return res.status(ERR_CODE).send({status:"error", error: err.message});
     }
 });
 
@@ -212,7 +214,7 @@ router.post('/search', async function (req, res) {
         responseItems = responseItems.slice(0, limit);
         return res.send({status: "OK", items: responseItems});
     }catch (err) {
-        return res.status(500).send({status: "error", error: err.message});
+        return res.status(ERR_CODE).send({status: "error", error: err.message});
     }
 });
 
@@ -234,7 +236,7 @@ router.post('/item/:id/like', none_rediret_not_authen, async function (req, res)
         return res.send({status:"OK"});
     }catch (err) {
         // if(process.env.PRINT_ERRORS === 'true') console.log(err.message);
-        return res.status(500).send({status: "error", error: err.message});
+        return res.status(ERR_CODE).send({status: "error", error: err.message});
     }
 });
 

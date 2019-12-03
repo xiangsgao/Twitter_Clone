@@ -8,6 +8,7 @@ const Token = require('../models/token');
 const passport = require('passport');
 const protecting_routes = require('../app_compoents/protecting_routes');
 const Item = require('../models/item');
+const ERR_CODE = 433;
 
 
 /* TODO
@@ -48,7 +49,7 @@ router.get('/all_users_json', async function (req, res) {
       });
       res.send({status:"OK", users: users_json});
     }catch (err) {
-      return res.status(500).send({status:'error', error: err.message});
+      return res.status(ERR_CODE).send({status:'error', error: err.message});
     }
 });
 
@@ -57,10 +58,10 @@ router.get('/all_users_json', async function (req, res) {
 router.post('/login', protecting_routes.none_redirect_authen, function(req, res, next) {
   // if(process.env.PRINT_REQUESTS === "true") console.log(req.body);
   passport.authenticate('local', function(err, user, info) {
-    if (err) { return res.status(500).send({status: "error", error: err.message})};
-    if (!user || (user.isVerified == false)) { return res.status(500).send({status: "error", error: "credential invalid or user not verified"})};
+    if (err) { return res.status(ERR_CODE).send({status: "error", error: err.message})};
+    if (!user || (user.isVerified == false)) { return res.status(ERR_CODE).send({status: "error", error: "credential invalid or user not verified"})};
     req.logIn(user, function(err) {
-      if (err) { return res.status(500).send({status: "error", error: err.message})};
+      if (err) { return res.status(ERR_CODE).send({status: "error", error: err.message})};
       return res.json({status: "OK"});
     });
   })(req, res, next);
@@ -107,11 +108,11 @@ router.post('/adduser', protecting_routes.none_redirect_authen, async function(r
     const email_body = `validation key: <${token.token}>`;
     let mailOptions = { from: process.env.GMAIL_ADDRESS, to: user.email, subject: 'TTT Verification Token', text: email_body};
     transporter.sendMail(mailOptions, function (err) {
-      if (err) { return res.status(500).send({ msg: err.message });}
+      if (err) { return res.status(ERR_CODE).send({ msg: err.message });}
     });
     return res.send({status: "OK"});
   }catch (err) {
-    return res.status(500).send({status: "error", error: err.message});
+    return res.status(ERR_CODE).send({status: "error", error: err.message});
   }
 });
 
@@ -137,7 +138,7 @@ router.post('/verify', protecting_routes.none_redirect_authen, async function(re
     await user.save();
     return res.send({status:"OK"});
   }catch (err) {
-    return res.status(500).send({status: "error", error: err.message});
+    return res.status(ERR_CODE).send({status: "error", error: err.message});
   }
 });
 
@@ -153,7 +154,7 @@ router.get('/user/:username', async function (req, res) {
     };
     return res.json({status: "OK", user: responseJson});
   }catch (err) {
-    return res.status(500).send({status: "error", error: err.message});
+    return res.status(ERR_CODE).send({status: "error", error: err.message});
   }
 });
 
@@ -170,7 +171,7 @@ router.get('/user/:username/posts', async function(req, res){
     item_ids = item_ids.slice(0, limit);
     return res.send({status: "OK", items: item_ids});
   }catch (err) {
-    return res.status(500).send({stauts: "error", error: err.message});
+    return res.status(ERR_CODE).send({stauts: "error", error: err.message});
   }
 });
 
@@ -183,7 +184,7 @@ router.get('/user/:username/followers', async function(req, res){
     let responseFollowers = user.followers.slice(0, limit);
     return res.send({status: "OK", users: responseFollowers});
   }catch (err) {
-    return res.status(500).send({status: "error", error: err.message});
+    return res.status(ERR_CODE).send({status: "error", error: err.message});
   }
 });
 
@@ -196,7 +197,7 @@ router.get('/user/:username/following', async function(req, res){
     let responseFollowing = user.following.slice(0, limit);
     return res.send({status: "OK", users: responseFollowing});
   }catch (err) {
-    return res.status(500).send({status: "error", error: err.message});
+    return res.status(ERR_CODE).send({status: "error", error: err.message});
   }
 });
 
@@ -229,7 +230,7 @@ router.post('/follow', protecting_routes.none_rediret_not_authen, async function
 
       return res.send({status: "OK"});
     } catch (err) {
-      return res.status(500).send({status: "error", error: err.message});
+      return res.status(ERR_CODE).send({status: "error", error: err.message});
     }
 });
 
