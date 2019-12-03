@@ -71,7 +71,7 @@ router.post('/addmedia', none_rediret_not_authen, upload.single('content'), asyn
         if(process.env.PRINT_RESULT === 'true') console.log(response);
         return res.send(response);
     }catch (err) {
-        if(process.env.PRINT_ERRORS === 'true') console.log(err.message);
+        res.err_msg = err.message;
         return  res.status(ERR_CODE).send({status: "error", error: err.message});
     }
 });
@@ -89,6 +89,7 @@ router.get('/media/:id', none_rediret_not_authen, async function (req, res) {
         readstream.pipe(res);
         return;
     }catch (err) {
+        res.err_msg = err.message;
         res.status(ERR_CODE).send({status: "error", error: err.message});
     }
 });

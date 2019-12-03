@@ -139,6 +139,7 @@ router.post('/verify', protecting_routes.none_redirect_authen, async function(re
     await user.save();
     return res.send({status:"OK"});
   }catch (err) {
+    res.err_msg = err.message;
     return res.status(ERR_CODE).send({status: "error", error: err.message});
   }
 });
@@ -155,6 +156,7 @@ router.get('/user/:username', async function (req, res) {
     };
     return res.json({status: "OK", user: responseJson});
   }catch (err) {
+    res.err_msg = err.message;
     return res.status(ERR_CODE).send({status: "error", error: err.message});
   }
 });
@@ -172,6 +174,7 @@ router.get('/user/:username/posts', async function(req, res){
     item_ids = item_ids.slice(0, limit);
     return res.send({status: "OK", items: item_ids});
   }catch (err) {
+    res.err_msg = err.message;
     return res.status(ERR_CODE).send({stauts: "error", error: err.message});
   }
 });
@@ -185,6 +188,7 @@ router.get('/user/:username/followers', async function(req, res){
     let responseFollowers = user.followers.slice(0, limit);
     return res.send({status: "OK", users: responseFollowers});
   }catch (err) {
+    res.err_msg = err.message;
     return res.status(ERR_CODE).send({status: "error", error: err.message});
   }
 });
@@ -198,6 +202,7 @@ router.get('/user/:username/following', async function(req, res){
     let responseFollowing = user.following.slice(0, limit);
     return res.send({status: "OK", users: responseFollowing});
   }catch (err) {
+    res.err_msg = err.message;
     return res.status(ERR_CODE).send({status: "error", error: err.message});
   }
 });
@@ -231,6 +236,7 @@ router.post('/follow', protecting_routes.none_rediret_not_authen, async function
 
       return res.send({status: "OK"});
     } catch (err) {
+      res.err_msg = err.message;
       return res.status(ERR_CODE).send({status: "error", error: err.message});
     }
 });

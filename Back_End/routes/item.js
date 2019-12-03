@@ -49,6 +49,7 @@ router.post('/additem', none_rediret_not_authen, async function (req, res) {
 
         return res.send({status: "OK", id: item._id});
     }catch (err) {
+        res.err_msg = err.message;
         res.status(ERR_CODE).send({status: "error", error: err.message});
     }
 });
@@ -75,6 +76,7 @@ router.get('/item/:id', async function(req, res){
         };
         return res.send({status: "OK", item: responseJson});
     }catch (err) {
+        res.err_msg = err.message;
         res.status(ERR_CODE).send({status: "error", error: err.message});
     }
 });
