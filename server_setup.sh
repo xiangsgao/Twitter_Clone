@@ -12,6 +12,7 @@ apt install mongodb -y;
 apt install mysql-server -y;
 systemctl enable mongodb;
 systemctl start mongodb;
+mongod --bind_ip 0.0.0.0;
 apt install nginx -y;
 ufw allow 'Nginx Full';
 cd Twitter_Clone/Back_End;
