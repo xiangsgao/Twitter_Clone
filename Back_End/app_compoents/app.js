@@ -65,6 +65,7 @@ if(process.env.USE_LOGGER === 'true') {
       skip: function (req, res) {
         if(res.statusCode > 400) {
           console.log(req.body);
+          if(process.env.PRINT_ERRORS === "true")console.log(res.err_msg);
         }
         return res.statusCode < 400
       }

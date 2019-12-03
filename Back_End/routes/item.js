@@ -122,6 +122,7 @@ router.delete('/item/:id', none_rediret_not_authen, async function(req, res){
         await delete_item_only(item);
         return res.send({status: "OK"});
     }catch (err) {
+        res.err_msg = err.message;
         return res.status(ERR_CODE).send({status:"error", error: err.message});
     }
 });
@@ -214,7 +215,7 @@ router.post('/search', async function (req, res) {
         responseItems = responseItems.slice(0, limit);
         return res.send({status: "OK", items: responseItems});
     }catch (err) {
-        if(process.env.PRINT_ERRORS === "true")console.log(err.message);
+        res.err_msg = err.message;
         return res.status(ERR_CODE).send({status: "error", error: err.message});
     }
 });
@@ -236,7 +237,7 @@ router.post('/item/:id/like', none_rediret_not_authen, async function (req, res)
         await item.save();
         return res.send({status:"OK"});
     }catch (err) {
-        // if(process.env.PRINT_ERRORS === 'true') console.log(err.message);
+        res.err_msg = err.message;
         return res.status(ERR_CODE).send({status: "error", error: err.message});
     }
 });
